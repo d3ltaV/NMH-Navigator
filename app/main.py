@@ -1,4 +1,5 @@
-from flask import *
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+import json
 
 app = Flask(__name__)
 
@@ -6,14 +7,18 @@ app = Flask(__name__)
 # Routes
 
 
-def load_buildings():
-    with open('buildings.json') as f:
-        return json.load(f)
+
+with open('buildings.json') as f:
+    BUILDINGS =  json.load(f)
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return redirect(url_for("map"))
 
+@app.route("api/buildings")
+def get_buildings():
+    #data for map
+    return jsonify(BUILDINGS)
 @app.route("/building")
 def building():
     #maybe we can show list of all buildings in the non map view?
@@ -21,13 +26,12 @@ def building():
 
 @app.route("/map")
 def map():
-    # map view
-    pass
+    #where map is shown
+    return render_template("index.html")
 
 @app.route("/buildings/<name>")
 def buildings(name):
-    buildings = load_buildings()
-    selected_building = next((x for x in buildings if x["name"] == name), None)
+    selected_building = next((x for x in BUILDINGS if x["name"] == name), None)
     if not selected_building:
         return "no building found"
     return render_template("building.html", building=selected_building)
