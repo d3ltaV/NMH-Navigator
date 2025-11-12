@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import json
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
@@ -8,17 +10,18 @@ app = Flask(__name__)
 
 
 
-with open('buildings.json') as f:
-    BUILDINGS =  json.load(f)
+# with open('buildings.json') as f:
+#     BUILDINGS =  json.load(f)
 
 @app.route('/')
 def home():
     return redirect(url_for("map"))
 
-@app.route("api/buildings")
+@app.route("/api/buildings")
 def get_buildings():
-    #data for map
-    return jsonify(BUILDINGS)
+    pass
+    # #data for map
+    # return jsonify(BUILDINGS)
 @app.route("/building")
 def building():
     #maybe we can show list of all buildings in the non map view?
@@ -26,8 +29,9 @@ def building():
 
 @app.route("/map")
 def map():
-    #where map is shown
-    return render_template("index.html")
+    load_dotenv()
+    key = os.getenv('API')
+    return render_template("map.html", api=key )
 
 @app.route("/buildings/<name>")
 def buildings(name):

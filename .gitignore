@@ -1,3 +1,5 @@
+.env
+
 touch app/static/css/.gitkeep
 touch app/static/images/.gitkeep
 touch app/static/js/.gitkeep
