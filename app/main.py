@@ -9,7 +9,6 @@ app = Flask(__name__)
 # Routes
 
 
-
 # with open('buildings.json') as f:
 #     BUILDINGS =  json.load(f)
 
