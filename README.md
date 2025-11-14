@@ -77,7 +77,7 @@ The system:
 - Filters: department, level, location
 - Ratings and reviews
 
-### Workjob Catalog (`workjobs.py`)
+### Workjob Catalog
 - List all workjobs: title, description, hours/terms, location, supervisor/contact, prereqs/skills
 - Filters: hours/term, location, day
 - Mailto links for supervisor/contact
@@ -88,11 +88,11 @@ The system:
 - Filters: location, season offered, etc.
 - NMH users able to access ratings and reviews
 
-### Rating & Review System (`models.py`, feature routes)
+### Rating & Review System
 - Only accessible to NMH users
 - 0–5 rating scale and any string comments
 
-### Global Search/Filter/Sort (`services/search.py`)
+### Global Search/Filter/Sort
 - Search across Workjobs, Classes, and PE/Co-Curriculars
 - Sort by name, rating, or availability
 - Can be viewed both via a toggle list and a map
