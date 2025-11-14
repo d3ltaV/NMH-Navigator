@@ -6,9 +6,7 @@ from utils.workjob_class import WORKJOBS
 
 app = Flask(__name__)
 
-
 # Routes
-
 
 BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
 @app.route('/')
@@ -36,7 +34,7 @@ def api_workjobs(location):
         if key.lower().strip() == loc:
             print(f"Found match: {key}")
             print(jobs)
-            return jsonify(jobs)
+            return jsonify([job.to_dict() for job in jobs])
 
     print(f"No match found for: '{loc}'")
     return jsonify({"error": "No workjobs found"}), 404
