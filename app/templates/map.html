@@ -1,16 +1,15 @@
-<html>
-    <head>
-        <title>Campus Map</title>
+{% extends "base.html" %}
 
-        <link rel="stylesheet" type="text/css" href="static/css/map.css" />
+{% block title %}Campus Map{% endblock %}
+{% block extra %}
+    <link rel="stylesheet" type="text/css" href="static/css/map.css" />
+    <!-- prettier-ignore -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "{{api}}", v: "weekly"});</script>
+{% endblock %}
 
-        <!-- prettier-ignore -->
-        <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-            ({key: "{{api}}", v: "weekly"});</script>
-    </head>
-    <body>
+{% block body %}
     <gmp-map zoom="16" center="42.668, -72.4838" map-id="ilovematcha"></gmp-map>
-
     <div id="popup" class="popup">
         <div id="popup-content"></div>
         <button id="popup-close">Close</button>
@@ -20,6 +19,4 @@
         <button id="workjob-detail-close">Close</button>
     </div>
         <script type="module" src="static/js/map.js"></script>
-    </body>
-
-</html>
+{% endblock %}

@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workjobs List</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Find Workjobs{% endblock %}
+{% block extra %} 
+    <link rel="stylesheet" href="static/css/list.css" />
+{% endblock %}
+
+{% block body %}
     <div class="container">
         <header>
             <div class="nav-links">
@@ -31,5 +30,5 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/list.js') }}"></script>
-</body>
-</html>
+{% endblock %}
+
