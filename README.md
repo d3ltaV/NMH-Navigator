@@ -15,7 +15,7 @@ The **NMH Navigator** is a Flask-based web app that helps students discover and 
 The system:
 - Stores workjob, classes, PE, and co-curricular information in a **CSV file**
 - Allows for NMH user **registration**, **login**, and **logout** (required for posting reviews, only accessible to NMH students)
-- Enables NMH users to post anonymous reviews about workjob, classes, PE, and co-ccuricular information
+- Enables NMH users to post anonymous reviews about workjob, classes, PE, and co-curricular information
 - Provides functionality for product owners and design team to check reviews posted to make sure they’re appropriate
 - Offers **interactive map view** (pins for locations that open detailed information)
 - Offers a **catalog view** with **search**, **filters**, and **sorting**
@@ -49,9 +49,7 @@ The system:
 │
 ├── docs/                              # Project documentation
 │   └── srs/
-│       └── SRS_Document.pdf           # Full SRS (Purpose, Scope, Constraints, Stories)
-│       └──Use_Case_Diagram.jpeg        # UML Diagram
-│       └──Class_Diagram.jpeg           # UML Diagram
+│       └── SRS_Document.pdf           # Full SRS (Purpose, Scope, Constraints, Stories, UMLs)
 │
 ├── .gitignore                         # Git ignore rules
 │
