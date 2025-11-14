@@ -9,14 +9,16 @@
 {% endblock %}
 
 {% block body %}
-    <gmp-map zoom="16" center="42.668, -72.4838" map-id="ilovematcha"></gmp-map>
-    <div id="popup" class="popup">
-        <div id="popup-content"></div>
-        <button id="popup-close">Close</button>
+    <div class="map-container"></div>
+        <gmp-map zoom="16" center="42.668, -72.4838" map-id="ilovematcha"></gmp-map>
+        <div id="popup" class="popup">
+            <div id="popup-content"></div>
+            <button id="popup-close">Close</button>
+        </div>
+        <div id="workjob-detail" class="workjob-detail">
+            <div id="workjob-detail-content"></div>
+            <button id="workjob-detail-close">Close</button>
+        </div>
     </div>
-    <div id="workjob-detail" class="workjob-detail">
-        <div id="workjob-detail-content"></div>
-        <button id="workjob-detail-close">Close</button>
-    </div>
-        <script type="module" src="static/js/map.js"></script>
+    <script type="module" src="static/js/map.js"></script>
 {% endblock %}

@@ -11,7 +11,7 @@ app = Flask(__name__)
 BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
 @app.route('/')
 def home():
-    return redirect(url_for("map"))
+    return render_template("index.html")
 
 
 @app.route("/list")
