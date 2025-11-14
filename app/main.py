@@ -13,11 +13,32 @@ BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Va
 def home():
     return redirect(url_for("map"))
 
-@app.route("/building")
-def building():
-    #maybe we can show list of all buildings in the non map view?
-    pass
 
+@app.route("/list")
+def list_view():
+    return render_template("list.html", buildings=BUILDINGS)
+
+
+@app.route("/api/search")
+def api_search():
+    query = request.args.get('q', '').lower().strip()
+
+    if not query:
+        all_jobs = []
+        for jobs in WORKJOBS.values():
+            all_jobs.extend([job.to_dict() for job in jobs])
+        return jsonify(all_jobs)
+
+    results = []
+    for jobs in WORKJOBS.values():
+        for job in jobs:
+            job_dict = job.to_dict()
+            searchable_text = f"{job_dict.get('name', '')} {job_dict.get('location', '')} {job_dict.get('description', '')} {job_dict.get('supervisor', '')}".lower()
+
+            if query in searchable_text:
+                results.append(job_dict)
+
+    return jsonify(results)
 @app.route("/map")
 def map():
     load_dotenv()

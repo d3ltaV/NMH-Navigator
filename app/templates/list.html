@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workjobs List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="nav-links">
+                <a href="/">← Back to Map</a>
+            </div>
+            <h1>Workjob Directory</h1>
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="searchBox"
+                    class="search-box"
+                    placeholder="Search by any parameter you desire"
+                    autocomplete="off"
+                >
+            </div>
+            <div class="results-info" id="resultsInfo">Loading workjobs...</div>
+        </header>
+
+        <div class="workjobs-grid" id="workjobsGrid">
+            <div class="loading">Loading workjobs...</div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/list.js') }}"></script>
+</body>
+</html>
