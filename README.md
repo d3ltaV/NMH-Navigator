@@ -48,8 +48,9 @@ The system:
 │   └── scraper.py                     # Data scraper/crawler
 │
 ├── docs/                              # Project documentation
-│   └── srs/
-│       └── SRS_Document.pdf           # Full SRS (Purpose, Scope, Constraints, Stories, UMLs)
+│   └── Use_Case_Diagram.jpg #Documents the use case of the program
+│   └── Class_Diagram.jpg    #Documents the attributes and methods for each class
+│   └── SRS.md               # Full SRS (Purpose, Scope, Constraints, Stories)
 │
 ├── .gitignore                         # Git ignore rules
 │
