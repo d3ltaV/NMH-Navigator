@@ -33,6 +33,8 @@ class ClassList:
         table = cls.getTable()
         classes = []
         for i, r in table.iterrows():
+            if r["BNC Code"] == "BNC Code" or r["Course Name"] == "Course Name":
+                continue
             class_obj = cls(
                 bnc=r["BNC Code"] if pd.notna(r["BNC Code"]) else None,
                 name=r["Course Name"] if pd.notna(r["Course Name"]) else None,
@@ -43,6 +45,11 @@ class ClassList:
             classes.append(class_obj)
 
         return classes
+    @classmethod
+    def printClasses(cls):
+        classes = ClassList.getClasses()
+        for c in classes:
+            print(c.to_dict())
 
 
 CLASSES = ClassList.getClasses()
