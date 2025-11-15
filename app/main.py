@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from utils.workjob_class import WORKJOBS
 
+
 app = Flask(__name__)
 
 # Routes

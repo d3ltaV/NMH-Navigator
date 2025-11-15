@@ -69,7 +69,7 @@ class WorkJob:
 
     @staticmethod
     def printWorkjobs():
-        wj = WorkJob.get_workjobs()
+        wj = WorkJob.getWorkjobs()
         workjobs = WorkJob.sortByLocation(wj)
         print("Workjobs by Location:")
         for location, jobs in workjobs.items():
