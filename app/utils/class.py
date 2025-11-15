@@ -46,5 +46,4 @@ class ClassList:
 
 
 
-
 CLASSES = ClassList.getClasses()

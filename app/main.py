@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 import json
 from dotenv import load_dotenv
 import os
-from utils.workjob_class import WORKJOBS
+from utils.workjob import WORKJOBS
 
 
 app = Flask(__name__)
@@ -15,9 +15,9 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/list")
+@app.route("/workjob")
 def list_view():
-    return render_template("list.html", buildings=BUILDINGS)
+    return render_template("workjob.html", buildings=BUILDINGS)
 
 
 @app.route("/api/search")

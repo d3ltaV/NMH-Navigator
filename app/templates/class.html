@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block extra %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/class.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="classes-container class-body">
+    <div class="container">
+        <div class="classes-header">
+            <h1>Classes Directory</h1>
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchBox" 
+                    class="search-box" 
+                    placeholder="Search by class name, description, location, or subject..."
+                    autocomplete="off"
+                >
+            </div>
+            <div class="results-info" id="resultsInfo">Loading Classes...</div>
+        </div>
+
+        <div class="classes-grid" id="classesGrid">
+            <div class="loading">Loading classes...</div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/class.js') }}"></script>
+{% endblock %}
