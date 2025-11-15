@@ -23,7 +23,7 @@ class ClassList:
     @classmethod
     def getTable(cls):
         load_dotenv()
-        docs = os.getenv('WORKJOB_URL')
+        docs = os.getenv('CLASS_URL')
         table = pd.read_csv(docs)
         table.columns = table.columns.str.strip()
         return table
