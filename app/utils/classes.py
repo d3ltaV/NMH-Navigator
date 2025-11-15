@@ -17,7 +17,7 @@ class ClassList:
             "name": self.name,
             "room": self.room,
             "semester": self.semester,
-            "BNC": self.bnc,
+            "bnc": self.bnc,
         }
 
     @classmethod
@@ -43,7 +43,6 @@ class ClassList:
             classes.append(class_obj)
 
         return classes
-
 
 
 CLASSES = ClassList.getClasses()

@@ -1,14 +1,14 @@
-.workjobs-container {
+.classes-container {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.workjobs-container * {
+.classes-container * {
     box-sizing: border-box;
 }
 
-.workjobs-body {
+.classes-body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     padding: 20px;
@@ -19,14 +19,14 @@
     margin: 0 auto;
 }
 
-.workjobs-header {
+.classes-header {
     background-color: #f9f9f9;
     padding: 20px;
     border: 1px solid #ddd;
     margin-bottom: 20px;
 }
 
-.workjobs-header h1 {
+.classes-header h1 {
     color: #000;
     margin: 0 0 20px 0;
     font-weight: normal;
@@ -68,58 +68,33 @@
     font-size: 14px;
 }
 
-.workjobs-grid {
+.classes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
 }
 
-.workjob-card {
+.class-card {
     background-color: #fff;
     padding: 15px;
     border: 1px solid #000;
 }
 
-.workjob-title {
+.class-title {
     color: #000;
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.workjob-location {
-    color: #000;
-    font-size: 14px;
-    margin-bottom: 10px;
-    display: inline-block;
-    padding: 2px 6px;
-    background-color: #e0e0e0;
-    border: 1px solid #999;
-}
-
-.workjob-info {
+.class-info {
     margin: 8px 0;
     color: #000;
     font-size: 14px;
 }
 
-.workjob-info strong {
+.class-info strong {
     color: #000;
-}
-
-.workjob-description {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #ccc;
-    color: #000;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.workjob-blocks {
-    margin-top: 8px;
-    color: #000;
-    font-size: 13px;
 }
 
 .loading {
@@ -142,7 +117,7 @@
 }
 
 @media (max-width: 768px) {
-    .workjobs-grid {
+    .classes-grid {
         grid-template-columns: 1fr;
     }
 }

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block extra %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/class.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/classes.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="classes-container class-body">
+<div class="classes-container classes-body">
     <div class="container">
         <div class="classes-header">
             <h1>Classes Directory</h1>
@@ -27,5 +27,5 @@
     </div>
 </div>
 
-<script src="{{ url_for('static', filename='js/class.js') }}"></script>
+<script src="{{ url_for('static', filename='js/classes.js') }}"></script>
 {% endblock %}

@@ -2,44 +2,69 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 import json
 from dotenv import load_dotenv
 import os
-from utils.workjob import WORKJOBS
+from utils.workjobs import WORKJOBS #format: dict of {location: -> [WorkJob objects]}
+from utils.classes import CLASSES #format: list of [Class objects]
 
+BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
 
 app = Flask(__name__)
 
-# Routes
 
-BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
+# Routes
 @app.route('/')
 def home():
     return render_template("index.html")
 
+@app.route("/workjobs")
+def workjob_view():
+    return render_template("workjobs.html", buildings=BUILDINGS)
 
-@app.route("/workjob")
-def list_view():
-    return render_template("workjob.html", buildings=BUILDINGS)
-
+@app.route("/classes")
+def class_view():
+    return render_template("classes.html")
 
 @app.route("/api/search")
 def api_search():
+    # query parameters
     query = request.args.get('q', '').lower().strip()
+    searchType = request.args.get('s', '').lower().strip()
 
-    if not query:
-        all_jobs = []
+    if (searchType == 'workjobs'):
+        if not query:
+            all_jobs = []
+            for jobs in WORKJOBS.values():
+                all_jobs.extend([job.to_dict() for job in jobs]) # list of dictionary of all workjobs
+            return jsonify(all_jobs)
+
+        results = []
         for jobs in WORKJOBS.values():
-            all_jobs.extend([job.to_dict() for job in jobs])
-        return jsonify(all_jobs)
+            for job in jobs:
+                job_dict = job.to_dict()
+                searchable_text = f"{job_dict.get('name', '')} {job_dict.get('location', '')} {job_dict.get('description', '')} {job_dict.get('supervisor', '')}".lower()
 
-    results = []
-    for jobs in WORKJOBS.values():
-        for job in jobs:
-            job_dict = job.to_dict()
-            searchable_text = f"{job_dict.get('name', '')} {job_dict.get('location', '')} {job_dict.get('description', '')} {job_dict.get('supervisor', '')}".lower()
+                if query in searchable_text:
+                    results.append(job_dict)
+        return jsonify(results)
+    
+    elif (searchType == 'classes'):
+        if not query:
+            all_classes = []
+            for c in CLASSES:
+                all_classes.append(c.to_dict())
+            return jsonify(all_classes) # list of dictionary of all classes
+
+        results = []
+        for c in CLASSES:
+            # for x in c: add this loop if classes become grouped like workjobs
+            class_dict = c.to_dict()
+            searchable_text = f"{class_dict.get('bnc', '')} {class_dict.get('name', '')} {class_dict.get('semester', '')} {class_dict.get('room', '')}".lower()
 
             if query in searchable_text:
-                results.append(job_dict)
-
-    return jsonify(results)
+                results.append(class_dict)
+        return jsonify(results)
+    else:
+        return jsonify({"error": "somethings broken"}), 400
+    
 @app.route("/map")
 def map():
     load_dotenv()
