@@ -1,17 +1,16 @@
 <html>
     <head>
         <title>{% block title %}NMH-Navigator{% endblock %}</title>
-        <link rel="stylesheet" href="static/css/base.css" />
-        {% block extra %} {% endblock %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+        {% block extra %}{% endblock %}
     </head>
     <body>
-        <header class = "header">
+        <header class="header">
             <h1 class="title">NMH-Navigator</h1>
             <nav class="nav-bar">
                 <a href="/">Home</a>
                 <a href="/map">Campus Map</a>
                 <a href="/list">Workjobs</a>
-                <!-- <a href="/about">About</a> -->
             </nav>
         </header>
         {% block body %}{% endblock %}

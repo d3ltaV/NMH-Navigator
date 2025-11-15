@@ -1,34 +1,31 @@
 {% extends "base.html" %}
 
-{% block title %}Find Workjobs{% endblock %}
-{% block extra %} 
-    <link rel="stylesheet" href="static/css/list.css" />
+{% block extra %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}">
 {% endblock %}
 
 {% block body %}
+<div class="workjobs-container workjobs-body">
     <div class="container">
-        <header>
-            <div class="nav-links">
-                <a href="/">← Back to Map</a>
-            </div>
-            <h1>Workjob Directory</h1>
+        <div class="workjobs-header">
+            <h1>Workjobs Directory</h1>
             <div class="search-container">
-                <input
-                    type="text"
-                    id="searchBox"
-                    class="search-box"
-                    placeholder="Search by any parameter you desire"
+                <input 
+                    type="text" 
+                    id="searchBox" 
+                    class="search-box" 
+                    placeholder="Search by name, location, supervisor, or description..."
                     autocomplete="off"
                 >
             </div>
             <div class="results-info" id="resultsInfo">Loading workjobs...</div>
-        </header>
+        </div>
 
         <div class="workjobs-grid" id="workjobsGrid">
             <div class="loading">Loading workjobs...</div>
         </div>
     </div>
+</div>
 
-    <script src="{{ url_for('static', filename='js/list.js') }}"></script>
+<script src="{{ url_for('static', filename='js/list.js') }}"></script>
 {% endblock %}
-
