@@ -26,13 +26,13 @@ body {
     display: flex;
     flex-direction: row;
     gap: 20px;
-}
 
-.nav-bar a {
-    text-decoration: underline;
-    color: blue;
-}
+    a {
+        text-decoration: underline;
+        color: blue;
 
-.nav-bar a:hover {
-    color: purple;
+        &:hover {
+            color: purple;
+        }
+    }
 }

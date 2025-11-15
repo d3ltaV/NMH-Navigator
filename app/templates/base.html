@@ -1,7 +1,11 @@
 <html>
     <head>
         <title>{% block title %}NMH-Navigator{% endblock %}</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+
+        {% assets "scss_all" %}
+            <link rel="stylesheet" href="{{ ASSET_URL }}" />
+        {% endassets %}
+
         {% block extra %}{% endblock %}
     </head>
     <body>

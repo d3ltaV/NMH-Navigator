@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
+from flask_assets import Environment, Bundle
 import json
 from dotenv import load_dotenv
 import os
@@ -8,6 +9,20 @@ from utils.classes import CLASSES #format: list of [Class objects]
 BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
 
 app = Flask(__name__)
+
+assets = Environment(app)
+assets.url = app.static_url_path
+assets.directory = app.static_folder
+
+scss_all = Bundle(
+    'scss/base.scss',
+    'scss/classes.scss',
+    'scss/workjobs.scss',
+    'scss/map.scss',
+    filters='libsass',
+    output='css/compiled.css'
+)
+assets.register('scss_all', scss_all)
 
 
 # Routes

@@ -17,27 +17,29 @@ gmp-map {
     z-index: 1000;
 }
 
-#popup button {
-    margin-top: 10px;
-    padding: 6px 10px;
-    border: none;
-    background: #eee;
-    border-radius: 6px;
-    cursor: pointer;
-}
+#popup {
+    button {
+        margin-top: 10px;
+        padding: 6px 10px;
+        border: none;
+        background: #eee;
+        border-radius: 6px;
+        cursor: pointer;
 
-#popup button:hover {
-    background: #ddd;
+        &:hover {
+            background: #ddd;
+        }
+    }
 }
 
 .workjob-link {
     color: #0066cc;
     text-decoration: none;
     cursor: pointer;
-}
 
-.workjob-link:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .workjob-detail {
@@ -63,8 +65,8 @@ gmp-map {
     background: #eee;
     border-radius: 6px;
     cursor: pointer;
-}
 
-#workjob-detail-close:hover {
-    background: #ddd;
+    &:hover {
+        background: #ddd;
+    }
 }
