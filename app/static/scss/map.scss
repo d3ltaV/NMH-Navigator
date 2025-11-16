@@ -1,0 +1,72 @@
+gmp-map {
+    height: 80vh;
+    width: 100vw;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    max-width: 300px;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+}
+
+#popup {
+    button {
+        margin-top: 10px;
+        padding: 6px 10px;
+        border: none;
+        background: #eee;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover {
+            background: #ddd;
+        }
+    }
+}
+
+.workjob-link {
+    color: #0066cc;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.workjob-detail {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    z-index: 10000;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#workjob-detail-close {
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: none;
+    background: #eee;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+        background: #ddd;
+    }
+}
