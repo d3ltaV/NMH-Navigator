@@ -4,7 +4,7 @@ import json
 from dotenv import load_dotenv
 import os
 from utils.workjobs import WORKJOBS #format: dict of {location: -> [WorkJob objects]}
-from utils.classes import CLASSES #format: list of [Class objects]
+from utils.classes import CLASSES
 
 BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
 
