@@ -9,7 +9,10 @@ app = Flask(__name__)
 
 # Routes
 
-BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
+BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym",
+             "Gilder", "Various Locations", "RAC", "Health Center",
+             "Communications Office", "Early Childhood Center", "Farm",
+             "Service Learning", "Plant Facilities", "BEV"]
 @app.route('/')
 def home():
     return render_template("index.html")
