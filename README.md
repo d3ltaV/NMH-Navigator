@@ -136,11 +136,11 @@ pip install -r requirements.txt
 ### 4. Add Your .env File
 In the root folder, create a .env file containing:
 ```bash
-WORKJOB_URL=<https://docs.google.com/spreadsheets/d/e/2PACX-1vTR6OP1q_w4LObL3liuHMsMWG5Eq_b38LuaHDu4JnTpIBbBEtnn-yV9JEgriquvzS_uL4PcJ0yxpdWg/pub?gid=0&single=true&output=csv>
-CLASS_URL=<https://docs.google.com/spreadsheets/d/e/2PACX-1vQrzYHWyCQR6cYvgSI6coAbcQh2fZOyBbsSYuhaJI6jSUE5MVpb-y6uALcV6Q3a1McEMErrBKofJump/pub?gid=0&single=true&output=csv>
-API=<API=AIzaSyBdNCKFoAmB0Xutb3b0lri5ZK45f7V0xqM>
+WORKJOB_URL=<workjob_data_source>
+CLASS_URL=<class_data_source>
+API=<google_maps_api_key>
 ```
-For cases of security, each developer must create .env locally.
+For cases of security, each developer must create .env locally. Contact development team for more information. 
 
 ### 5. Run the App
 ```bash
