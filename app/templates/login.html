@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Log-in to NMH Navigator!</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css.login.css') }}">
+</head>
+
+<body>
+  <div class="login_page">
+    <div class="login_card">
+
+      <h1 class="login_account">Log in to your account to learn more about NMH!</h1>
+      <p class="login_note">Only NMH users can login.</p>
+
+      <p class="login_description">
+        Navigate workjobs, classes, and campus resources.
+      </p>
+
+      <form method="POST" action="/login" class="login_form">
+
+        <label for="user_email" class="login_label">NMH email</label>
+        <input
+          type="email"
+          id="user_email"
+          name="user_email"
+          class="login_input"
+          placeholder="you26@nmhschool.org"
+          required
+        >
+
+        <label for="user_password" class="login_label">Password</label>
+        <input
+          type="password"
+          id="user_password"
+          name="user_password"
+          class="login_input"
+          placeholder="*********"
+          required
+        >
+
+        <button type="submit" class="login_button">
+          Login
+        </button>
+
+        <p class="login_footer">
+          Don't have an account?
+          <a href="#" class="login_link">Request access</a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>
