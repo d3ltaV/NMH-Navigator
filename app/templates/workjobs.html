@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 
-{% block extra %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/workjob.css') }}">
-{% endblock %}
-
 {% block body %}
 <div class="workjobs-container workjobs-body">
     <div class="container">
@@ -27,5 +23,5 @@
     </div>
 </div>
 
-<script src="{{ url_for('static', filename='js/workjob.js') }}"></script>
+<script src="{{ url_for('static', filename='js/workjobs.js') }}"></script>
 {% endblock %}

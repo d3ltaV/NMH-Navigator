@@ -1,7 +1,11 @@
 <html>
     <head>
         <title>{% block title %}NMH-Navigator{% endblock %}</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
+
+        {% assets "scss_all" %}
+            <link rel="stylesheet" href="{{ ASSET_URL }}" />
+        {% endassets %}
+
         {% block extra %}{% endblock %}
     </head>
     <body>
@@ -10,7 +14,8 @@
             <nav class="nav-bar">
                 <a href="/">Home</a>
                 <a href="/map">Campus Map</a>
-                <a href="/workjob">Workjobs</a>
+                <a href="/classes">Classes</a>
+                <a href="/workjobs">Workjobs</a>
             </nav>
         </header>
         {% block body %}{% endblock %}

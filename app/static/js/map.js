@@ -27,9 +27,6 @@ async function initMap() {
         { title: "BEV", position: { lat:42.66896317632714 , lng: -72.48240568446545} },
         { title: "Forest", position: {lat: 42.67102844380024, lng: -72.48804669028948} },
         { title: "Blake", position: {lat: 42.66851986413596, lng: -72.4847851241787} },
-
-
-
     ];
 
     await mapElement.innerMap;
@@ -64,8 +61,10 @@ async function initMap() {
 
                     if (!data.error) {
                         data.forEach(job => {
+                            const sJob = encodeURIComponent(JSON.stringify(job));
+                            const sData = encodeURIComponent(JSON.stringify(data));
                             const name = job.name ?? "Unnamed Workjob";
-                            html += `<a href="#" class="workjob-link" data-job='${JSON.stringify(job)}' data-all='${JSON.stringify(data)}'>${name}</a><br>`;
+                            html += `<a href="#" class="workjob-link" data-job="${sJob}" data-all="${sData}">${name}</a><br>`;
                         });
                     } else {
                         html += "No workjobs found.";
@@ -77,8 +76,10 @@ async function initMap() {
                     document.querySelectorAll('.workjob-link').forEach(link => {
                         link.addEventListener('click', (e) => {
                             e.preventDefault();
-                            const workjob = JSON.parse(e.target.dataset.job);
-                            const allJobs = JSON.parse(e.target.dataset.all);
+                            const dwj = decodeURIComponent(e.target.dataset.job);
+                            const aj = decodeURIComponent(e.target.dataset.all);
+                            const workjob = JSON.parse(dwj);
+                            const allJobs = JSON.parse(aj);
                             showWorkJobDetail(workjob, allJobs);
                         });
                     });

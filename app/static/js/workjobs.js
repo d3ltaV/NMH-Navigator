@@ -1,7 +1,7 @@
 let allWorkjobs = [];
 
-function loadClasses() {
-    fetch('/api/search')
+function loadWorkjobs() {
+    fetch('/api/search?s=workjobs')
         .then(response => response.json())
         .then(data => {
             allWorkjobs = data;
@@ -11,7 +11,7 @@ function loadClasses() {
 }
 
 function searchWorkjobs(query) {
-    fetch('/api/search?q=' + encodeURIComponent(query))
+    fetch('/api/search?q=' + encodeURIComponent(query) + '&s=workjobs')
         .then(response => response.json())
         .then(results => {
             displayWorkjobs(results);
