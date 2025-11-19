@@ -1,0 +1,45 @@
+$navy:#003366;
+$maroon: #8B0000;
+$light_blue: #e6f0fa; 
+
+.login_page{
+  background-color: $light_blue; 
+  height: 150vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login_card{
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px; 
+  border-radius: 10px; 
+  border: 1px solid #ccc; 
+  box-shadow: 0px 8px 18px rgba(0,0,0,0.1);
+}
+
+.login_account{
+  color: $navy;
+  text-align: center;
+  font-size: 1.4rem
+  font-weight: bold;
+}
+
+.login_note{
+  color: $maroon;
+  text-align: center;
+  font-weight: 550;
+  margin-top: 10px; 
+}
+
+.login_descirption{
+  text-align: center; 
+  font-size:0.9rem;
+  margin-bottom: 20px;
+  color: #555; 
+}
+  
+
