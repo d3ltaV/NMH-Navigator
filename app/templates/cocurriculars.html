@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="cocurriculars-container cocurriculars-body">
+    <div class="container">
+        <div class="cocurriculars-header">
+            <h1>Cocurriculars Directory</h1>
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchBox" 
+                    class="search-box" 
+                    placeholder="Search by name, location, category, season, prerequisites..."
+                    autocomplete="off"
+                >
+            </div>
+            <div class="results-info" id="resultsInfo">Loading cocurriculars...</div>
+        </div>
+
+        <div class="cocurriculars-grid" id="cocurricularsGrid">
+            <div class="loading">Loading cocurriculars...</div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/cocurriculars.js') }}"></script>
+{% endblock %}

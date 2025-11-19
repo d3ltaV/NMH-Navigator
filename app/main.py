@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os
 from utils.workjobs import WORKJOBS #format: dict of {location: -> [WorkJob objects]}
 from utils.classes import CLASSES #format: list of [Class objects]
+from utils.cocurriculars import COCURRICULARS #format: list of [Cocurricular objects]
 
 BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
 
@@ -19,6 +20,7 @@ scss_all = Bundle(
     'scss/classes.scss',
     'scss/workjobs.scss',
     'scss/map.scss',
+    'scss/cocurriculars.scss',
     filters='libsass',
     output='css/compiled.css'
 )
@@ -37,6 +39,10 @@ def workjob_view():
 @app.route("/classes")
 def class_view():
     return render_template("classes.html")
+
+@app.route("/cocurriculars")
+def cocurricular_view():
+    return render_template("cocurriculars.html")
 
 @app.route("/api/search")
 def api_search():
@@ -76,6 +82,23 @@ def api_search():
 
             if query in searchable_text:
                 results.append(class_dict)
+        return jsonify(results)
+
+    elif (searchType == 'cocurriculars'):
+        if not query:
+            all_co = []
+            for co in COCURRICULARS:
+                all_co.append(co.to_dict())
+            return jsonify(all_co) # list of dictionary of all cocurriculars
+
+        results = []
+        for co in COCURRICULARS:
+            # for x in co: add this loop if cocurriculars become grouped like workjobs
+            co_dict = co.to_dict()
+            searchable_text = f"{co_dict.get('name', '')} {co_dict.get('category', '')} {co_dict.get('season', '')} {co_dict.get('prerequisites', '')} {co_dict.get('location', '')} {co_dict.get('schedule', '')} {co_dict.get('advisor', '')}".lower()
+
+            if query in searchable_text:
+                results.append(co_dict)
         return jsonify(results)
     else:
         return jsonify({"error": "somethings broken"}), 400
