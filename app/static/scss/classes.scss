@@ -1,121 +1,200 @@
-.classes-container {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import 'base';
 
-    * {
-        box-sizing: border-box;
-    }
-}
+// ==========================================
+// CLASSES PAGE LAYOUT
+// ==========================================
 
-.classes-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+.classes-page {
+  padding: $spacing-xl 0;
+  min-height: calc(100vh - 200px);
 }
 
 .classes-header {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: $spacing-xl;
 
-    h1 {
-        color: #000;
-        margin: 0 0 20px 0;
-        font-weight: normal;
-    }
+  h1 {
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: lighten($text-dark, 20%);
+    font-size: $font-size-large;
+  }
 }
 
-.nav-links {
-    margin-bottom: 20px;
+// ==========================================
+// SEARCH AND FILTER CONTROLS
+// ==========================================
 
-    a {
-        color: #0000ee;
-        text-decoration: underline;
-        margin-right: 20px;
-
-        &:hover {
-            color: #551a8b;
-        }
-    }
+.controls-section {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  margin-bottom: $spacing-xl;
 }
 
-.search-container {
-    margin-bottom: 20px;
-}
+.search-bar {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
 
-.search-box {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #000;
-    outline: none;
+  #searchBox {
+    flex: 1;
+    padding: $spacing-md;
+    font-size: $font-size-large;
+    border: 2px solid $border-color;
+    border-radius: $border-radius-md;
 
     &:focus {
-        border: 2px solid #000;
+      border-color: $primary-color;
     }
+  }
+}
+
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+  align-items: end;
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    label {
+      font-weight: 600;
+      color: $primary-color;
+      font-size: $font-size-small;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select {
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-sm;
+      background-color: white;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding-top: $spacing-md;
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+  }
 }
 
 .results-info {
-    padding: 10px 0;
-    color: #333;
-    font-size: 14px;
+  text-align: center;
+  color: lighten($text-dark, 20%);
+  font-size: $font-size-small;
+  margin-top: $spacing-md;
+  padding: $spacing-sm;
+  background-color: lighten($secondary-color, 45%);
+  border-radius: $border-radius-sm;
 }
 
-.classes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
+// ==========================================
+// CLASS CARDS GRID
+// ==========================================
 
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-    }
+#classesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $spacing-lg;
 }
 
 .class-card {
-    background-color: #fff;
-    padding: 15px;
-    border: 1px solid #000;
-}
+  @include card-base;
+  border-left: 4px solid $primary-color;
 
-.class-title {
-    color: #000;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+  &:hover {
+    border-left-color: $secondary-color;
+    cursor: pointer;
+  }
 
-.class-info {
-    margin: 8px 0;
-    color: #000;
-    font-size: 14px;
+  .class-title {
+    font-size: $font-size-large;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+    line-height: 1.3;
+  }
+
+  .class-info {
+    margin-bottom: $spacing-sm;
+    font-size: $font-size-base;
+    color: $text-dark;
 
     strong {
-        color: #000;
+      color: $primary-color;
+      font-weight: 600;
+      margin-right: $spacing-xs;
     }
+  }
+
+  .class-bnc {
+    display: inline-block;
+    background-color: lighten($primary-color, 50%);
+    color: darken($primary-color, 10%);
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-small;
+    font-weight: 600;
+    margin-top: $spacing-sm;
+  }
 }
 
-.loading {
-    text-align: center;
-    padding: 40px;
-    color: #333;
-}
+// ==========================================
+// NO RESULTS STATE
+// ==========================================
 
 .no-results {
-    text-align: center;
-    padding: 60px 20px;
-    color: #333;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+  text-align: center;
+  padding: $spacing-xl * 2;
 
-    h2 {
-        margin-bottom: 10px;
-        color: #666;
-    }
+  h2 {
+    color: lighten($text-dark, 20%);
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    color: lighten($text-dark, 40%);
+    font-size: $font-size-large;
+  }
+}
+
+// ==========================================
+// RESPONSIVE DESIGN
+// ==========================================
+
+@media (max-width: 768px) {
+  .filter-controls {
+    grid-template-columns: 1fr;
+  }
+
+  #classesGrid {
+    grid-template-columns: 1fr;
+  }
 }

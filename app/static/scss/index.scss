@@ -1,18 +1,317 @@
+@import 'base';
+
+// ==========================================
+// HERO SECTION
+// ==========================================
+
+.hero {
+  background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 15%) 100%);
+  color: $text-light;
+  padding: $spacing-xl * 3 $spacing-lg;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+    opacity: 0.3;
+  }
+
+  .hero__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__heading {
+    font-size: 3.5rem;
+    color: $text-light;
+    margin-bottom: $spacing-lg;
+
+    span {
+      color: $accent-color;
+      font-weight: bold;
+    }
+  }
+
+  .hero__description {
+font-size: $font-size-large;
+margin-bottom: $spacing-xl;
+opacity: 0.9;
+}
+.main__btn {
+@include button-base;
+background-color: $accent-color;
+color: $text-dark;
+font-size: $font-size-large;
+padding: $spacing-md $spacing-xl;
+a {
+  color: $text-dark;
+  text-decoration: none;
+}
+
+&:hover {
+  background-color: lighten($accent-color, 10%);
+  transform: translateY(-3px);
+}
+}
+}
+// ==========================================
+// HOME CONTAINER
+// ==========================================
 .home-container {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+padding: $spacing-xl * 2 0;
+text-align: center;
+h1 {
+color: $primary-color;
+font-size: $font-size-h1;
+margin-bottom: $spacing-lg;
+}
+p {
+font-size: $font-size-large;
+color: lighten($text-dark, 20%);
+max-width: 600px;
+margin: 0 auto;
+}
+}
+// ==========================================
+// MAIN SECTIONS (About, Features)
+// ==========================================
+.main {
+padding: $spacing-xl * 2 0;
+.main__container {
+@extend .container;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: $spacing-xl * 2;
+align-items: center;
+}
+.main__content {
+h1 {
+color: $primary-color;
+margin-bottom: $spacing-md;
+}
+h2 {
+  color: $secondary-color;
+  font-size: $font-size-h3;
+  margin-bottom: $spacing-lg;
+}
 
-    h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-        font-weight: normal;
-    }
+p {
+  color: lighten($text-dark, 15%);
+  font-size: $font-size-large;
+  margin-bottom: $spacing-xl;
+  line-height: 1.8;
+}
+}
+.main__img--container {
+@include flex-center;
+}
+.main__img--card {
+width: 300px;
+height: 300px;
+background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+border-radius: 50%;
+@include flex-center;
+box-shadow: $shadow-lg;
+transition: all 0.3s ease;
+i {
+  font-size: 120px;
+  color: $text-light;
+}
 
-    p {
-        font-size: 16px;
-        line-height: 1.6;
-        color: #333;
+&:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+&#card-2 {
+  background: linear-gradient(135deg, $secondary-color 0%, $accent-color 100%);
+}
+}
+}
+// ==========================================
+// SERVICES SECTION
+// ==========================================
+.services {
+padding: $spacing-xl * 2 0;
+background-color: lighten($background-light, 2%);
+h1 {
+text-align: center;
+color: $primary-color;
+font-size: $font-size-h1;
+margin-bottom: $spacing-xl * 2;
+}
+.services__wrapper {
+@extend .container;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: $spacing-xl;
+}
+.services__card {
+@include card-base;
+text-align: center;
+background: white;
+border-top: 4px solid $primary-color;
+&:nth-child(2) {
+  border-top-color: $secondary-color;
+}
+
+&:nth-child(3) {
+  border-top-color: $accent-color;
+}
+
+&:nth-child(4) {
+  border-top-color: darken($primary-color, 15%);
+}
+
+h2 {
+  color: $primary-color;
+  font-size: $font-size-h3;
+  margin-bottom: $spacing-md;
+}
+
+p {
+  color: lighten($text-dark, 20%);
+  margin-bottom: $spacing-lg;
+  font-size: $font-size-base;
+}
+
+.services__btn {
+  button {
+    width: 100%;
+    background-color: $primary-color;
+    color: $text-light;
+    padding: $spacing-md;
+
+    &:hover {
+      background-color: $secondary-color;
     }
+  }
+}
+}
+}
+// ==========================================
+// FOOTER
+// ==========================================
+.footer__container {
+background-color: $background-dark;
+color: $text-light;
+padding: $spacing-xl * 2 0 $spacing-lg;
+.footer__links {
+@extend .container;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: $spacing-xl;
+margin-bottom: $spacing-xl;
+}
+.footer__link--wrapper {
+display: flex;
+gap: $spacing-xl;
+}
+.footer__link--items {
+flex: 1;
+h2 {
+  color: $secondary-color;
+  font-size: $font-size-large;
+  margin-bottom: $spacing-md;
+}
+
+a {
+  display: block;
+  color: lighten($text-dark, 60%);
+  margin-bottom: $spacing-sm;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $accent-color;
+    text-decoration: none;
+    padding-left: $spacing-xs;
+  }
+}
+}
+}
+.social__media {
+border-top: 1px solid lighten($background-dark, 15%);
+padding-top: $spacing-lg;
+.social__media--wrap {
+@extend .container;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: $spacing-lg;
+}
+.footer__logo {
+a {
+font-size: $font-size-h2;
+font-weight: bold;
+color: $accent-color;
+  &:hover {
+    color: $text-light;
+  }
+}
+}
+.website__rights {
+color: lighten($text-dark, 60%);
+font-size: $font-size-small;
+}
+.social__icons {
+display: flex;
+gap: $spacing-md;
+.social__icon--link {
+  width: 40px;
+  height: 40px;
+  background-color: lighten($background-dark, 15%);
+  border-radius: 50%;
+  @include flex-center;
+  color: $text-light;
+  font-size: $font-size-large;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $primary-color;
+    transform: translateY(-3px);
+  }
+}
+}
+}
+// ==========================================
+// RESPONSIVE DESIGN
+// ==========================================
+@media (max-width: 768px) {
+.hero {
+padding: $spacing-xl * 2 $spacing-lg;
+.hero__heading {
+  font-size: 2rem;
+}
+}
+.main .main__container {
+grid-template-columns: 1fr;
+gap: $spacing-xl;
+}
+.main__img--card {
+width: 200px !important;
+height: 200px !important;
+i {
+  font-size: 80px !important;
+}
+}
+.services__wrapper {
+grid-template-columns: 1fr;
+}
+.footer__links {
+grid-template-columns: 1fr;
+}
+.footer__link--wrapper {
+flex-direction: column;
+}
+.social__media--wrap {
+flex-direction: column;
+text-align: center;
+}
 }

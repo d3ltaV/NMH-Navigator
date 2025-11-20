@@ -3,10 +3,12 @@ from flask_assets import Environment, Bundle
 import json
 from dotenv import load_dotenv
 import os
-from utils.workjobs import WORKJOBS #format: dict of {location: -> [WorkJob objects]}
-from utils.classes import CLASSES
+from utils.workjobs import WORKJOBS  # format: dict of {location: -> [WorkJob objects]}
+from utils.classes import CLASSES  # format: list of [Class objects]
 
-BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
+BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC",
+             "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning",
+             "Plant Facilities", "BEV"]
 
 app = Flask(__name__)
 
@@ -30,13 +32,16 @@ assets.register('scss_all', scss_all)
 def home():
     return render_template("index.html")
 
+
 @app.route("/workjobs")
 def workjob_view():
     return render_template("workjobs.html", buildings=BUILDINGS)
 
+
 @app.route("/classes")
 def class_view():
     return render_template("classes.html")
+
 
 @app.route("/api/search")
 def api_search():
@@ -48,7 +53,7 @@ def api_search():
         if not query:
             all_jobs = []
             for jobs in WORKJOBS.values():
-                all_jobs.extend([job.to_dict() for job in jobs]) # list of dictionary of all workjobs
+                all_jobs.extend([job.to_dict() for job in jobs])  # list of dictionary of all workjobs
             return jsonify(all_jobs)
 
         results = []
@@ -60,13 +65,13 @@ def api_search():
                 if query in searchable_text:
                     results.append(job_dict)
         return jsonify(results)
-    
+
     elif (searchType == 'classes'):
         if not query:
             all_classes = []
             for c in CLASSES:
                 all_classes.append(c.to_dict())
-            return jsonify(all_classes) # list of dictionary of all classes
+            return jsonify(all_classes)  # list of dictionary of all classes
 
         results = []
         for c in CLASSES:
@@ -79,12 +84,14 @@ def api_search():
         return jsonify(results)
     else:
         return jsonify({"error": "somethings broken"}), 400
-    
+
+
 @app.route("/map")
 def map():
     load_dotenv()
     key = os.getenv('API')
-    return render_template("map.html", api=key )
+    return render_template("map.html", api=key)
+
 
 @app.route("/api/workjobs/<location>")
 def api_workjobs(location):

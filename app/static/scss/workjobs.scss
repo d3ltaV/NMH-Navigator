@@ -1,146 +1,274 @@
-.workjobs-container {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 
-    * {
-        box-sizing: border-box;
-    }
-}
+@import 'base';
 
-.workjobs-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    padding: 20px;
-}
+// ==========================================
+// WORKJOBS PAGE LAYOUT
+// ==========================================
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+.workjobs-page {
+  padding: $spacing-xl 0;
+  min-height: calc(100vh - 200px);
 }
 
 .workjobs-header {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: $spacing-xl;
 
-    h1 {
-        color: #000;
-        margin: 0 0 20px 0;
-        font-weight: normal;
-    }
+  h1 {
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: lighten($text-dark, 20%);
+    font-size: $font-size-large;
+  }
 }
 
-.nav-links {
-    margin-bottom: 20px;
+// ==========================================
+// SEARCH AND FILTER CONTROLS
+// ==========================================
 
-    a {
-        color: #0000ee;
-        text-decoration: underline;
-        margin-right: 20px;
-
-        &:hover {
-            color: #551a8b;
-        }
-    }
+.controls-section {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  margin-bottom: $spacing-xl;
 }
 
-.search-container {
-    margin-bottom: 20px;
-}
+.search-bar {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
 
-.search-box {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #000;
-    outline: none;
+  #searchBox {
+    flex: 1;
+    padding: $spacing-md;
+    font-size: $font-size-large;
+    border: 2px solid $border-color;
+    border-radius: $border-radius-md;
 
     &:focus {
-        border: 2px solid #000;
+      border-color: $primary-color;
     }
+  }
+}
+
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+  align-items: end;
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    label {
+      font-weight: 600;
+      color: $primary-color;
+      font-size: $font-size-small;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select {
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-sm;
+      background-color: white;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $primary-color;
+      }
+    }
+  }
 }
 
 .results-info {
-    padding: 10px 0;
-    color: #333;
-    font-size: 14px;
+  text-align: center;
+  color: lighten($text-dark, 20%);
+  font-size: $font-size-small;
+  margin-top: $spacing-md;
+  padding: $spacing-sm;
+  background-color: lighten($secondary-color, 45%);
+  border-radius: $border-radius-sm;
 }
 
-.workjobs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
+// ==========================================
+// WORKJOB CARDS GRID
+// ==========================================
 
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-    }
+#workjobsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: $spacing-lg;
 }
 
 .workjob-card {
-    background-color: #fff;
-    padding: 15px;
-    border: 1px solid #000;
-}
+  @include card-base;
+  border-left: 4px solid $secondary-color;
+  display: flex;
+  flex-direction: column;
 
-.workjob-title {
-    color: #000;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+  &:hover {
+    border-left-color: $accent-color;
+    cursor: pointer;
+  }
 
-.workjob-location {
-    color: #000;
-    font-size: 14px;
-    margin-bottom: 10px;
-    display: inline-block;
-    padding: 2px 6px;
-    background-color: #e0e0e0;
-    border: 1px solid #999;
-}
+  .workjob-header {
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-bottom: 2px solid lighten($border-color, 5%);
 
-.workjob-info {
-    margin: 8px 0;
-    color: #000;
-    font-size: 14px;
-
-    strong {
-        color: #000;
+    .workjob-title {
+      font-size: $font-size-large;
+      font-weight: 700;
+      color: $primary-color;
+      margin-bottom: $spacing-xs;
+      line-height: 1.3;
     }
+
+    .workjob-location {
+      display: inline-block;
+      background-color: lighten($secondary-color, 45%);
+      color: darken($secondary-color, 20%);
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-sm;
+      font-size: $font-size-small;
+      font-weight: 600;
+    }
+  }
+
+  .workjob-body {
+    flex: 1;
+    margin-bottom: $spacing-md;
+
+    .workjob-info {
+      margin-bottom: $spacing-sm;
+      font-size: $font-size-base;
+      color: $text-dark;
+      line-height: 1.6;
+
+      strong {
+        color: $primary-color;
+        font-weight: 600;
+        display: inline-block;
+        min-width: 100px;
+      }
+    }
+
+    .workjob-description {
+      color: lighten($text-dark, 15%);
+      font-size: $font-size-small;
+      line-height: 1.6;
+      margin-top: $spacing-md;
+      padding-top: $spacing-md;
+      border-top: 1px solid lighten($border-color, 5%);
+    }
+  }
+
+  .workjob-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: $spacing-md;
+    border-top: 2px solid lighten($border-color, 5%);
+
+    .workjob-spots {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+      color: $primary-color;
+      font-weight: 600;
+
+      &::before {
+        content: '👥';
+      }
+    }
+
+    .workjob-type {
+      display: inline-block;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-sm;
+      font-size: $font-size-small;
+      font-weight: 600;
+
+      &.selected {
+        background-color: lighten($success-color, 45%);
+        color: darken($success-color, 10%);
+      }
+
+      &.assigned {
+        background-color: lighten($accent-color, 35%);
+        color: darken($accent-color, 30%);
+      }
+    }
+  }
+
+  .workjob-contact {
+    margin-top: $spacing-md;
+
+    a {
+      display: block;
+      padding: $spacing-sm;
+      background-color: lighten($primary-color, 50%);
+      color: $primary-color;
+      text-align: center;
+      border-radius: $border-radius-sm;
+      font-weight: 600;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: $primary-color;
+        color: $text-light;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
-.workjob-description {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #ccc;
-    color: #000;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.workjob-blocks {
-    margin-top: 8px;
-    color: #000;
-    font-size: 13px;
-}
-
-.loading {
-    text-align: center;
-    padding: 40px;
-    color: #333;
-}
+// ==========================================
+// NO RESULTS STATE
+// ==========================================
 
 .no-results {
-    text-align: center;
-    padding: 60px 20px;
-    color: #333;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+  text-align: center;
+  padding: $spacing-xl * 2;
 
-    h2 {
-        margin-bottom: 10px;
-        color: #666;
-    }
+  h2 {
+    color: lighten($text-dark, 20%);
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    color: lighten($text-dark, 40%);
+    font-size: $font-size-large;
+  }
 }
+
+// ==========================================
+// RESPONSIVE DESIGN
+// ==========================================
+
+@media (max-width: 768px) {
+  .filter-controls {
+    grid-template-columns: 1fr;
+  }
+
+  #workjobsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .workjob-footer {
+    flex-direction: column;
+    gap: $spacing-sm;
+    align-items: flex-start;
+  }
+}
+```
+

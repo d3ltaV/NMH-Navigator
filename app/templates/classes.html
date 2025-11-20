@@ -1,48 +1,53 @@
 {% extends "base.html" %}
 
+{% block title %}NMH Navigator Classes{% endblock %}
+
 {% block body %}
-<div class="classes-container classes-body">
+<div class="classes-page">
     <div class="container">
         <div class="classes-header">
-            <h1>Classes Directory</h1>
-            <div class="search-container">
-                <input
-                    type="text"
-                    id="searchBox"
-                    class="search-box"
-                    placeholder="Search by class name, description, location, or subject..."
-                    autocomplete="off"
-                >
+            <h1>Class Catalog</h1>
+            <p>Explore NMH's academic offerings</p>
+        </div>
+
+        <div class="controls-section">
+            <div class="search-bar">
+                <input type="text" id="searchBox" placeholder="Search classes by name, BNC, semester, or room...">
             </div>
-            <div class="filter-sort-container">
-                <div class="filter-container">
-                    <label for="subjectFilter">Filter by Subject:</label>
-                    <select id="subjectFilter" class="subject-filter">
+
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="subjectFilter">Subject</label>
+                    <select id="subjectFilter">
                         <option value="">All Subjects</option>
+                        <!-- Populated by JavaScript -->
                     </select>
                 </div>
-                <div class="sort-container">
-                    <label for="sortSelect">Sort by:</label>
-                    <select id="sortSelect" class="sort-select">
-                        <option value="name">Class Name</option>
-                        <option value="bnc">BNC Code</option>
+
+                <div class="filter-group">
+                    <label for="sortSelect">Sort By</label>
+                    <select id="sortSelect">
+                        <option value="name">Name</option>
+                        <option value="bnc">BNC</option>
                         <option value="semester">Semester</option>
                         <option value="room">Room</option>
                     </select>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="descendingCheck" class="sort-checkbox">
-                        Descending
-                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="descendingCheck">
+                    <label for="descendingCheck">Descending</label>
                 </div>
             </div>
-            <div class="results-info" id="resultsInfo">Loading Classes...</div>
+
+            <div id="resultsInfo" class="results-info">Loading classes...</div>
         </div>
 
-        <div class="classes-grid" id="classesGrid">
-            <div class="loading">Loading classes...</div>
-        </div>
+        <div id="classesGrid"></div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <script src="{{ url_for('static', filename='js/classes.js') }}"></script>
 {% endblock %}

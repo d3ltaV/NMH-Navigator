@@ -2,6 +2,7 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 
+
 class WorkJob:
 
     def __init__(self, name, location, supervisor, supervisor_email,
@@ -28,12 +29,13 @@ class WorkJob:
             "description": self.description,
             "notes": self.notes
         }
-    
+
     @classmethod
     def getTable(cls):
-        load_dotenv()
-        docs = os.getenv('WORKJOB_URL')
-        table = pd.read_csv(docs)
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(base_dir, "../data/classes.csv")
+        csv_path = os.path.normpath(csv_path)
+        table = pd.read_csv(csv_path)
         return table
 
     @classmethod
