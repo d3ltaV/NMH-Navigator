@@ -1,8 +1,5 @@
 @import 'base';
 
-// ==========================================
-// HERO SECTION
-// ==========================================
 
 .hero {
   background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 15%) 100%);
@@ -61,9 +58,7 @@ a {
 }
 }
 }
-// ==========================================
-// HOME CONTAINER
-// ==========================================
+
 .home-container {
 padding: $spacing-xl * 2 0;
 text-align: center;
@@ -79,9 +74,7 @@ max-width: 600px;
 margin: 0 auto;
 }
 }
-// ==========================================
-// MAIN SECTIONS (About, Features)
-// ==========================================
+
 .main {
 padding: $spacing-xl * 2 0;
 .main__container {
@@ -134,9 +127,7 @@ i {
 }
 }
 }
-// ==========================================
-// SERVICES SECTION
-// ==========================================
+
 .services {
 padding: $spacing-xl * 2 0;
 background-color: lighten($background-light, 2%);
@@ -195,9 +186,7 @@ p {
 }
 }
 }
-// ==========================================
-// FOOTER
-// ==========================================
+
 .footer__container {
 background-color: $background-dark;
 color: $text-light;
@@ -280,9 +269,7 @@ gap: $spacing-md;
 }
 }
 }
-// ==========================================
-// RESPONSIVE DESIGN
-// ==========================================
+
 @media (max-width: 768px) {
 .hero {
 padding: $spacing-xl * 2 $spacing-lg;
