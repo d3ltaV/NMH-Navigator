@@ -1,8 +1,4 @@
-### **Step 6: Create Global Styles** (`static/scss/styles.scss`)
-```scss
-// ==========================================
-// MAIN STYLESHEET - IMPORTS ALL MODULES
-// ==========================================
+
 
 @import 'base';
 @import 'index';
@@ -10,9 +6,6 @@
 @import 'workjobs';
 @import 'map';
 
-// ==========================================
-// MOBILE MENU TOGGLE (for responsive navbar)
-// ==========================================
 
 .navbar__toggle {
   display: none;
@@ -53,9 +46,6 @@
   }
 }
 
-// ==========================================
-// LOADING STATES
-// ==========================================
 
 .loading {
   @include flex-center;
@@ -78,9 +68,6 @@
   }
 }
 
-// ==========================================
-// SCROLLBAR CUSTOMIZATION
-// ==========================================
 
 ::-webkit-scrollbar {
   width: 12px;
@@ -99,9 +86,6 @@
   }
 }
 
-// ==========================================
-// SMOOTH SCROLLING
-// ==========================================
 
 html {
   scroll-behavior: smooth;
