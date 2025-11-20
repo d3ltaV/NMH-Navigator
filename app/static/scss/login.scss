@@ -41,5 +41,48 @@ $light_blue: #e6f0fa;
   margin-bottom: 20px;
   color: #555; 
 }
+
+.login_label{
+  font-weight: 600;
+  color: $navy;
+  margin-bottom: 5px; 
+  display: block;
+}
+
+.login_input{
+  width: 100%; 
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 0.95rem;
+}
+
+.login_input_focus{
+  outline: none;
+  border-color: $navy;
+  box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2);
+}
+
+.login_button:hover{
+  background: darken($navy, 10%);
+}
+
+.login_footer{
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.login_link{
+  color: $maroon;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login_link:hover{
+  text-decoration: underline;
+}  
   
 
