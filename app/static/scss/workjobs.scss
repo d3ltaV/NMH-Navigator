@@ -1,9 +1,6 @@
 
 @import 'base';
 
-// ==========================================
-// WORKJOBS PAGE LAYOUT
-// ==========================================
 
 .workjobs-page {
   padding: $spacing-xl 0;
@@ -25,9 +22,6 @@
   }
 }
 
-// ==========================================
-// SEARCH AND FILTER CONTROLS
-// ==========================================
 
 .controls-section {
   background: white;
@@ -98,9 +92,7 @@
   border-radius: $border-radius-sm;
 }
 
-// ==========================================
-// WORKJOB CARDS GRID
-// ==========================================
+
 
 #workjobsGrid {
   display: grid;
@@ -232,9 +224,6 @@
   }
 }
 
-// ==========================================
-// NO RESULTS STATE
-// ==========================================
 
 .no-results {
   text-align: center;
@@ -251,9 +240,6 @@
   }
 }
 
-// ==========================================
-// RESPONSIVE DESIGN
-// ==========================================
 
 @media (max-width: 768px) {
   .filter-controls {
