@@ -55,7 +55,6 @@ function displayWorkjobs(workjobs) {
 
         html += '</div>';
     }
-
     grid.innerHTML = html;
 }
 
@@ -77,9 +76,3 @@ function handleSearch() {
         updateResultsInfo(allWorkjobs.length, allWorkjobs.length);
     }
 }
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('searchBox').addEventListener('input', handleSearch);
-    loadWorkjobs();
-});

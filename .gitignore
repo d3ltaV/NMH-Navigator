@@ -1,4 +1,5 @@
 .env
+sqlite_db
 /app/static/css/
 
 touch app/static/css/.gitkeep
