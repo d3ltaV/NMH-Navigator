@@ -2,13 +2,52 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_assets import Environment, Bundle
 import json
 from dotenv import load_dotenv
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
+from oauthlib.oauth2 import WebApplicationClient
+import requests
+
+from app.login.user import User
+from app.login.db import init_db
+
 import os
-from utils.workjobs import WORKJOBS #format: dict of {location: -> [WorkJob objects]}
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+load_dotenv()
+from utils.workjobs import WORKJOBS
 from utils.classes import CLASSES
 
-BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC", "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning", "Plant Facilities", "BEV"]
+BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC",
+             "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning",
+             "Plant Facilities", "BEV"]
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
+GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
+
 
 app = Flask(__name__)
+
+
+app.secret_key = os.environ.get("CLIENT_ID", None)
+login_manager = LoginManager()
+login_manager.init_app(app)
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
+
+with app.app_context():
+    pass
+    #init_db()
+
+
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 
 assets = Environment(app)
 assets.url = app.static_url_path
@@ -25,30 +64,35 @@ scss_all = Bundle(
 assets.register('scss_all', scss_all)
 
 
-# Routes
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
+
+
 @app.route('/')
 def home():
     return render_template("index.html")
+
 
 @app.route("/workjobs")
 def workjob_view():
     return render_template("workjobs.html", buildings=BUILDINGS)
 
+
 @app.route("/classes")
 def class_view():
     return render_template("classes.html")
 
+
 @app.route("/api/search")
 def api_search():
-    # query parameters
     query = request.args.get('q', '').lower().strip()
     searchType = request.args.get('s', '').lower().strip()
 
-    if (searchType == 'workjobs'):
+    if searchType == 'workjobs':
         if not query:
             all_jobs = []
             for jobs in WORKJOBS.values():
-                all_jobs.extend([job.to_dict() for job in jobs]) # list of dictionary of all workjobs
+                all_jobs.extend([job.to_dict() for job in jobs])
             return jsonify(all_jobs)
 
         results = []
@@ -56,35 +100,34 @@ def api_search():
             for job in jobs:
                 job_dict = job.to_dict()
                 searchable_text = f"{job_dict.get('name', '')} {job_dict.get('location', '')} {job_dict.get('description', '')} {job_dict.get('supervisor', '')}".lower()
-
                 if query in searchable_text:
                     results.append(job_dict)
         return jsonify(results)
-    
-    elif (searchType == 'classes'):
+
+    elif searchType == 'classes':
         if not query:
             all_classes = []
             for c in CLASSES:
                 all_classes.append(c.to_dict())
-            return jsonify(all_classes) # list of dictionary of all classes
+            return jsonify(all_classes)
 
         results = []
         for c in CLASSES:
-            # for x in c: add this loop if classes become grouped like workjobs
             class_dict = c.to_dict()
             searchable_text = f"{class_dict.get('bnc', '')} {class_dict.get('name', '')} {class_dict.get('semester', '')} {class_dict.get('room', '')}".lower()
-
             if query in searchable_text:
                 results.append(class_dict)
         return jsonify(results)
     else:
         return jsonify({"error": "somethings broken"}), 400
-    
+
+
 @app.route("/map")
 def map():
     load_dotenv()
     key = os.getenv('API')
-    return render_template("map.html", api=key )
+    return render_template("map.html", api=key)
+
 
 @app.route("/api/workjobs/<location>")
 def api_workjobs(location):
@@ -100,6 +143,65 @@ def api_workjobs(location):
 
     print(f"No match found for: '{loc}'")
     return jsonify({"error": "No workjobs found"}), 404
+
+
+@app.route("/login")
+def login():
+    google_provider_cfg = get_google_provider_cfg()
+    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+    request_uri = client.prepare_request_uri(
+        authorization_endpoint,
+        redirect_uri=url_for("callback", _external=True),
+        scope=["openid", "email", "profile"],
+    )
+    return redirect(request_uri)
+
+
+@app.route("/login/callback")
+def callback():
+    code = request.args.get("code")
+    google_provider_cfg = get_google_provider_cfg()
+    token_endpoint = google_provider_cfg["token_endpoint"]
+    token_url, headers, body = client.prepare_token_request(
+        token_endpoint,
+        authorization_response=request.url,
+        redirect_url=url_for("callback", _external=True),
+        code=code,
+    )
+    token_response = requests.post(
+        token_url,
+        headers=headers,
+        data=body,
+        auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
+    )
+    client.parse_request_body_response(json.dumps(token_response.json()))
+    userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
+    uri, headers, body = client.add_token(userinfo_endpoint)
+    userinfo_response = requests.get(uri, headers=headers, data=body)
+
+    if userinfo_response.json().get("email_verified"):
+        unique_id = userinfo_response.json()["sub"]
+        users_email = userinfo_response.json()["email"]
+        picture = userinfo_response.json()["picture"]
+        users_name = userinfo_response.json()["given_name"]
+    else:
+        return "User email not available or not verified by Google.", 400
+
+    user = User(id_=unique_id, name=users_name, email=users_email, profile_pic=picture)
+
+    if not User.get(unique_id):
+        User.create(unique_id, users_name, users_email, picture)
+
+    login_user(user)
+    print(f"name {user.name}, id {user.id}, email {user.email}")
+    return redirect(url_for("home"))
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
