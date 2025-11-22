@@ -2,20 +2,20 @@ from .db import get_db
 from datetime import datetime
 
 class Review:
-    def __init__(self, id_, user_id, target_type, target_name, rating, review, created_at):
+    def __init__(self, id_, user_id, target_type, target_name, review, rating, created_at):
         self.id = id_
         self.user_id = user_id
         self.target_type = target_type #'workjobs', 'classes', 'cocurriculars'
         self.target_name = target_name  # workjob/class/cocurricular name
-        self.rating = rating
         self.review = review
+        self.rating = rating
         self.created_at = created_at
 
     @staticmethod
     def create(user_id, target_type, target_name, review=None, rating=None):
         db = get_db()
         db.execute("""
-            INSERT OR REPLACE INTO review (user_id, target_type, target_name, review, rating)
+            INSERT INTO review (user_id, target_type, target_name, review, rating, created_at)
             VALUES (?, ?, ?, ?, ?, ?)
         """, (user_id, target_type, target_name, review, rating, datetime.now()))
         db.commit()

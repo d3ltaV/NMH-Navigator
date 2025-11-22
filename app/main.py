@@ -14,6 +14,7 @@ import requests
 
 from database.user import User
 from database.db import init_db
+from database.review import Review
 
 import os
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
@@ -163,6 +164,39 @@ def api_workjobs(location):
     print(f"No match found for: '{loc}'")
     return jsonify({"error": "No workjobs found"}), 404
 
+@app.route("/api/reviews/<target_type>/<target_name>")
+def getReviews(target_type, target_name):
+    reviews = Review.target_review(target_type, target_name)
+    review_list = [
+        {
+            "id": r.id,
+            "user_id": r.user_id,
+            "target_type": r.target_type,
+            "target_name": r.target_name,
+            "review": r.review,
+            "rating": r.rating,
+            "created_at": r.created_at
+        }
+        for r in reviews
+    ]
+    return jsonify(review_list)
+
+@app.route("/api/reviews", methods=["POST"])
+def addReview():
+    data = request.json
+    target_type = data.get("target_type")
+    target_name = data.get("target_name")
+    review_text = data.get("review")
+    rating = data.get("rating")
+
+    Review.create(
+        user_id=current_user.id,
+        target_type=target_type,
+        target_name=target_name,
+        review=review_text,
+        rating=rating
+    )
+    return jsonify({"success": True}), 201
 
 @app.route("/login")
 def login():
