@@ -173,6 +173,17 @@ This system aims to provide users with access to:
 - Categories for feedback (bug, suggestion, report)
 - Confirmation message after submission
 
+#### Feature 10: Dot Plot Rating System ("Wellington Dots")
+
+**User story 10:** As a student, I want to rate and view classes using a **dot-plot system** that reflects likeability (1 to 5) and challenge level (low, medium, high), so I can best choose classes that fit within my comfort level. 
+
+**Acceptance criteria:**
+- Dot plot includes a grid with **Vertical Axis (likeability)** and **Horizontal Axis (challenge level)** 
+- Each student generates a single dot positioned according to the selected values
+- Only logged-in users can submit a rating for the class
+- Integrates with Feature 2, but is only displayed when selected
+- Updates and new ratings are automatically added to the dot plot
+
 ### 3.2 Functional Requirements
 
 1. **Authentication System:**
