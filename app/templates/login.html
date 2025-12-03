@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Log-in to NMH Navigator!</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css.login.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/compiled.css') }}">
 </head>
 
 <body>
@@ -17,38 +17,15 @@
         Navigate workjobs, classes, and campus resources.
       </p>
 
-      <form method="POST" action="/login" class="login_form">
+      <a href="{{ url_for('login') }}" class="login_button">
+        Sign in with Google
+      </a>
 
-        <label for="user_email" class="login_label">NMH email</label>
-        <input
-          type="email"
-          id="user_email"
-          name="user_email"
-          class="login_input"
-          placeholder="you26@nmhschool.org"
-          required
-        >
+      <p class="login_footer">
+        Don't have an account?
+        <a href="#" class="login_link">Request access</a>
+      </p>
 
-        <label for="user_password" class="login_label">Password</label>
-        <input
-          type="password"
-          id="user_password"
-          name="user_password"
-          class="login_input"
-          placeholder="*********"
-          required
-        >
-
-        <button type="submit" class="login_button">
-          Login
-        </button>
-
-        <p class="login_footer">
-          Don't have an account?
-          <a href="#" class="login_link">Request access</a>
-        </p>
-
-      </form>
     </div>
   </div>
 </body>

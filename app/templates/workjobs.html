@@ -24,4 +24,10 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/workjobs.js') }}"></script>
+<script>
+    // Load workjobs when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        loadWorkjobs();
+    });
+</script>
 {% endblock %}
