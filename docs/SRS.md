@@ -178,11 +178,22 @@ This system aims to provide users with access to:
 **User story 10:** As a student, I want to rate and view classes using a **dot-plot system** that reflects likeability (1 to 5) and challenge level (low, medium, high), so I can best choose classes that fit within my comfort level. 
 
 **Acceptance criteria:**
-- Dot plot includes a grid with **Vertical Axis (likeability)** and **Horizontal Axis (challenge level)** 
+- Dot plot shows a square grid in four sections with **Vertical Axis (Likeability, "Hate" to "Love")** and **Horizontal Axis (Challenge level ranging from "Challenged" to "Unchallenged")** 
 - Each student generates a single dot positioned according to the selected values
 - Only logged-in users can submit a rating for the class
 - Integrates with Feature 2, but is only displayed when selected
 - Updates and new ratings are automatically added to the dot plot
+
+#### Feature 11: NMH Resources Page
+
+**User story 11:** As a student, I want a **Resources** page with hyperlinks to existing NMH tools and websites so I can access important information effeiciently without having to search across multiple websites. 
+
+**Acceptance criteria:**
+- Page titled as "NMH Resources" in the navigation menu
+- Includes links to important NMH platforms (NMH official website, NMH Hub—Dining Hall Menus, NMH Club Database, etc.) 
+- Each link contains a short desciprtion of what the platform/resource is used for
+- Page loads quickly
+
 
 ### 3.2 Functional Requirements
 
