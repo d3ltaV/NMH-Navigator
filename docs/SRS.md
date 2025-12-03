@@ -16,6 +16,8 @@ This system aims to provide users with access to:
 - View by map or view by category
 - Co-curricular and rating
 - PE and rating
+- Challenge & Enjoyment Dot Plot (similar to Wellington Dots) for reviews on classes
+- General Resources Page to important NMH tools and platforms
 
 ### 1.2 Scope
 
@@ -41,6 +43,8 @@ This system aims to provide users with access to:
 
 **Nice-to-Have Features:**
 - Dining module with ratings
+- Dot plot similar to Wellington Dots that provides access to student ratings of likeability and challenge for classes (ask Kevin)
+- General Resources page with links to exitsing NMH platforms (ask Kevin as well, since also included in the purpose)
 - Moderation and community guidelines
 - Dashboard for managing content
 
