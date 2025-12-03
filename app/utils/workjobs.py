@@ -33,9 +33,14 @@ class WorkJob:
     def getTable(cls):
         load_dotenv()
         docs = os.getenv('WORKJOB_URL')
-        table = pd.read_csv(docs)
-        return table
-
+        if not docs:
+            print("NO WORKJOB_URL.")
+            return pd.DataFrame()
+        try:
+            table = pd.read_csv(docs)
+            return table
+        except Exception as e:
+            return pd.DataFrame()
     @classmethod
     def getWorkjobs(cls):
         table = cls.getTable()
