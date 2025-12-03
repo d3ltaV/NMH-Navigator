@@ -221,8 +221,13 @@ This system aims to provide users with access to:
    - Separate pages for Workjobs, Classes, Co-Curriculars
    - Search and filter functions per page
 
-6. **Feedback form system**
-   - Stores form submissions in the backend for review by the admin team
+6. **Class Review: Challenge-Enjoyment Dot Plot System**
+   - Users can place a dot on the two-axis grid (challenge and likeability) to represent their experiences for classes
+   - Only logged-in users can submit a dot
+
+6. **General Resources Page**
+   - Page includes hyperlinks to existing NMH tools and platforms that can be helpful (official website, club database, etc.)
+   - Searchable and accessible from the main menu 
 
 ### 3.3 Non-Functional Requirements
 
