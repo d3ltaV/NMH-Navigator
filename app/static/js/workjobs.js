@@ -50,14 +50,32 @@ function displayWorkjobs(workjobs) {
         }
 
         if (job.notes) {
-            html += '<div class="workjob-info" style="margin-top: 10px; font-style: italic;"><strong>Note:</strong> ' + job.notes + '</div>';
+            html += '<div class="workjob-info"><strong>Note:</strong> ' + job.notes + '</div>';
         }
-        html += `<div class="add-review">
-            <input type="number" min="1" max="5" placeholder="Rating (1-5)" id="rating-${i}">
-            <textarea placeholder="Write your review..." id="review-${i}"></textarea>
-            <button onclick="submitReview('${job.name}', ${i})">Submit Review</button>
-         </div>
-         <div id="reviews-${i}" class="reviews-container"></div>`;
+        html += `
+            <div class="reviews-section">
+
+                <button class="toggle-review-btn" id="toggle-btn-${i}" onclick="toggleReviewBox(${i})">Add Review</button>
+
+                <div class="review-box" id="review-box-${i}">
+                    <div class="rating-stars" data-index="${i}">
+                        ${[1,2,3,4,5].map(n =>
+                            `<span class="star" data-value="${n}">&#9733;</span>`
+                        ).join('')}
+                    </div>
+                    
+                    <input type="hidden" id="rating-${i}">
+
+                    <textarea class="review-input" id="review-${i}" placeholder="Write your review..."></textarea>
+
+                    <button class="submit-btn" onclick="submitReview('${job.name}', ${i})">
+                        Submit
+                    </button>
+                </div>
+
+                <div id="reviews-${i}" class="reviews-container"></div>
+            </div>
+        `;
 
         html += '</div>';
     }
@@ -97,9 +115,9 @@ function loadReviews(targetType, targetName, containerId) {
                 html = '<div class="no-reviews">No reviews yet. Be the first to add one!</div>';
             } else {
                 reviews.forEach(r => {
+                    const stars = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
                     html += `<div class="review-card">
-                                <div><strong>User:</strong> ${r.user_id}</div>
-                                <div><strong>Rating:</strong> ${r.rating || 'N/A'}</div>
+                                <div class="starsowo"><strong>Rating:</strong> ${stars}</div>
                                 <div>${r.review || ''}</div>
                              </div>`;
                 });
@@ -112,6 +130,17 @@ function submitReview(targetName, index) {
     const reviewText = document.getElementById(`review-${index}`).value;
     const rating = document.getElementById(`rating-${index}`).value;
 
+    const MAX_LENGTH = 200;
+
+    if (reviewText.length > MAX_LENGTH) {
+        alert(`Review cannot exceed ${MAX_LENGTH} characters.`);
+        return;
+    }
+
+    if (isNaN(rating) || rating < 1 || rating > 5) {
+        alert("Rating must be a number between 1 and 5.");
+        return;
+    }
     fetch('/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -126,11 +155,47 @@ function submitReview(targetName, index) {
             loadReviews('workjobs', targetName, `reviews-${index}`);
             document.getElementById(`review-${index}`).value = '';
             document.getElementById(`rating-${index}`).value = '';
+            const ratingInput = document.getElementById(`rating-${index}`);
+            ratingInput.value = '';
+
+            // Reset stars visually
+            const stars = document.querySelectorAll(`#review-box-${index} .star`);
+            stars.forEach(star => star.classList.remove('active'));
         } else {
-            alert("Failed to add review. Are you logged in?");
+            alert("Failed to add review. You must log in as an NMH student to add a review.");
         }
     });
 }
+
+function toggleReviewBox(i) {
+    const box = document.getElementById(`review-box-${i}`);
+    const btn = document.getElementById(`toggle-btn-${i}`);
+
+    const isOpen = box.classList.toggle("open");
+
+    if (isOpen) {
+        btn.textContent = "Close";
+    } else {
+        btn.textContent = "Add Review";
+    }
+}
+
+// star ratings
+document.addEventListener("click", function(e) {
+    if (!e.target.classList.contains("star")) return;
+
+    const parent = e.target.parentElement;
+    const index = parent.getAttribute("data-index");
+
+    const value = Number(e.target.getAttribute("data-value"));
+    document.getElementById(`rating-${index}`).value = value;
+
+    [...parent.children].forEach(star => {
+        let v = Number(star.getAttribute("data-value"));
+        star.classList.toggle("active", v <= value);
+    });
+});
+
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('searchBox').addEventListener('input', handleSearch);

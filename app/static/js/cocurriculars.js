@@ -38,10 +38,20 @@ function displayCocurriculars(cocurriculars) {
         html += '<div class="cocurricular-info"><strong>Location:</strong> ' + (cocurricular.location || 'TBD') + '</div>';
         html += '<div class="cocurricular-info"><strong>Schedule:</strong> ' + (cocurricular.schedule || 'TBD') + '</div>';
         html += '<div class="cocurricular-info"><strong>Advisor:</strong> ' + (cocurricular.advisor || 'TBD') + '</div>';
+
+        html += `<div class="add-review">
+            <input type="number" placeholder="Rating (1-5 stars)" id="rating-${i}">
+            <textarea placeholder="Write your review..." id="review-${i}"></textarea>
+            <button onclick="submitReview('${cocurricular.name}', ${i})">Submit Review</button>
+         </div>
+         <div id="reviews-${i}" class="reviews-container"></div>`;
+
         html += '</div>';
     }
-
     grid.innerHTML = html;
+    for (let i = 0; i < cocurriculars.length; i++) {
+        loadReviews('cocurriculars', cocurriculars[i].name, `reviews-${i}`);
+    }
 }
 
 function updateResultsInfo(shown, total) {
@@ -61,6 +71,54 @@ function handleSearch() {
         displayCocurriculars(allCocurriculars);
         updateResultsInfo(allCocurriculars.length, allCocurriculars.length);
     }
+}
+
+function loadReviews(targetType, targetName, containerId) {
+    fetch(`/api/reviews/${targetType}/${encodeURIComponent(targetName)}`)
+        .then(res => res.json())
+        .then(reviews => {
+            const container = document.getElementById(containerId);
+            let html = '';
+
+            if (reviews.length === 0) {
+                html = '<div class="no-reviews">No reviews yet.</div>';
+            } else {
+                reviews.forEach(r => {
+                    html += `<div class="review-card">
+                                <div><strong>Rating:</strong> ${r.rating || 'N/A'}</div>
+                                <div>${r.review || ''}</div>
+                             </div>`;
+                });
+            }
+            container.innerHTML = html;
+        });
+}
+
+function submitReview(targetName, index) {
+    const reviewText = document.getElementById(`review-${index}`).value;
+    const rating = document.getElementById(`rating-${index}`).value;
+    if (isNaN(rating) || rating < 1 || rating > 5) {
+        alert("Rating must be a number between 1 and 5.");
+        return;
+    }
+    fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            target_type: 'cocurriculars',
+            target_name: targetName,
+            review: reviewText,
+            rating: rating
+        })
+    }).then(res => {
+        if (res.ok) {
+            loadReviews('cocurriculars', targetName, `reviews-${index}`);
+            document.getElementById(`review-${index}`).value = '';
+            document.getElementById(`rating-${index}`).value = '';
+        } else {
+            alert("Failed to add review. You must log in as an NMH student to add a review.");
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {

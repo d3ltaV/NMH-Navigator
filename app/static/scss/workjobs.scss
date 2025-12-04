@@ -71,11 +71,7 @@
 .workjobs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
-
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-    }
+    gap: 1vw;
 }
 
 .workjob-card {
@@ -143,4 +139,104 @@
         margin-bottom: 10px;
         color: #666;
     }
+}
+
+.reviews-section {
+    margin-top: 15px;
+    border-top: 1px solid #ccc;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .toggle-review-btn {
+        background: #f0f0f0;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        width: 30%;
+        text-align: center;
+    }
+
+    .review-box {
+        display: none;
+        margin-top: 10px;
+        padding: 12px;
+        background: #fafafa;
+        border: 1px solid #ccc;
+    }
+    .review-box.open {
+        display: block;
+    }
+
+}
+
+
+.rating-stars {
+    font-size: 20px;
+    color: #bbb;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.star.active {
+    color: gold;
+}
+
+.review-input {
+    width: 100%;
+    height: 80px;
+    padding: 8px;
+    border: 1px solid #000;
+    resize: vertical;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.submit-btn {
+    background: black;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.reviews-container {
+    margin-top: 15px;
+    padding-top: 10px;
+    overflow-y: auto;
+    max-height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+}
+
+.review-card {
+    width: 90%;
+    margin: 2vh; 
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.review-card strong {
+    color: #000;
+}
+
+.no-reviews {
+    font-size: 14px;
+    color: #555;
+}
+
+.starsowo {
+    font-size: 18px;
+    color: gold;
+    margin-bottom: 5px;
 }
