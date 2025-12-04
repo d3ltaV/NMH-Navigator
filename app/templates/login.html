@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Log-in to NMH Navigator!</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/compiled.css') }}">
+</head>
+
+<body>
+  <div class="login_page">
+    <div class="login_card">
+
+      <h1 class="login_account">Log in to your account to learn more about NMH!</h1>
+      <p class="login_note">Only NMH users can login.</p>
+
+      <p class="login_description">
+        Navigate workjobs, classes, and campus resources.
+      </p>
+
+      <a href="{{ url_for('login') }}" class="login_button">
+        Sign in with Google
+      </a>
+
+      <p class="login_footer">
+        Don't have an account?
+        <a href="#" class="login_link">Request access</a>
+      </p>
+
+    </div>
+  </div>
+</body>
+</html>

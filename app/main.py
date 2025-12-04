@@ -39,9 +39,17 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
+assets = Environment(app)
+assets.url = app.static_url_path
+assets.directory = app.static_folder
+assets.debug = True
+assets.auto_build = True
+
+
+
 with app.app_context():
     pass
-    #init_db()
+    init_db()
 
 
 @login_manager.user_loader
@@ -59,6 +67,7 @@ scss_all = Bundle(
     'scss/workjobs.scss',
     'scss/map.scss',
     'scss/cocurriculars.scss',
+    'scss/login.scss',
     filters='libsass',
     output='css/compiled.css'
 )
@@ -71,6 +80,8 @@ def get_google_provider_cfg():
 
 @app.route('/')
 def home():
+    if not current_user.is_authenticated:
+        return redirect(url_for('loginPage'))
     return render_template("index.html")
 
 @app.route("/cocurriculars")
@@ -198,6 +209,12 @@ def addReview():
         rating=rating
     )
     return jsonify({"success": True}), 201
+
+@app.route("/loginpoop")
+def loginPage():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    return render_template("login.html")
 
 @app.route("/login")
 def login():
