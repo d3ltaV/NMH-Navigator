@@ -141,84 +141,35 @@
     }
 }
 
+/* Reviews section with buttons */
 .reviews-section {
     margin-top: 15px;
     border-top: 1px solid #ccc;
-    padding-top: 12px;
+    padding-top: 5vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 1vw;
     align-items: center;
     justify-content: center;
     width: 100%;
-
-    .toggle-review-btn {
-        background: #f0f0f0;
-        border-radius: 8px;
-        padding: 6px 10px;
-        font-size: 14px;
-        cursor: pointer;
-        width: 30%;
-        text-align: center;
-    }
-
-    .review-box {
-        display: none;
-        margin-top: 10px;
-        padding: 12px;
-        background: #fafafa;
-        border: 1px solid #ccc;
-    }
-    .review-box.open {
-        display: block;
-    }
-
 }
 
-
-.rating-stars {
-    font-size: 20px;
-    color: #bbb;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.star.active {
-    color: gold;
-}
-
-.review-input {
-    width: 100%;
-    height: 80px;
-    padding: 8px;
-    border: 1px solid #000;
-    resize: vertical;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.submit-btn {
-    background: black;
-    color: white;
-    padding: 8px 12px;
+.view-reviews-btn, .toggle-review-btn {
+    background: #cfcfcf;
     border: none;
-    cursor: pointer;
+    border-radius: 8px;
+    padding: 2vh 2vw;
     font-size: 14px;
+    cursor: pointer;
+    text-align: center;
 }
 
-.reviews-container {
-    margin-top: 15px;
-    padding-top: 10px;
-    overflow-y: auto;
-    max-height: 25vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    width: 100%;
+.view-reviews-btn:hover, .toggle-review-btn:hover {
+    background: #e0e0e0;
 }
 
 .review-card {
-    width: 90%;
-    margin: 2vh; 
+    margin-bottom: 1vh;
     padding: 10px;
     background: #f0f0f0;
     border-radius: 8px;
@@ -230,13 +181,134 @@
     color: #000;
 }
 
-.no-reviews {
-    font-size: 14px;
-    color: #555;
-}
-
 .starsowo {
     font-size: 18px;
     color: gold;
     margin-bottom: 5px;
+}
+
+.reviews-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.reviews-popup-content {
+    max-height: 60vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+}
+
+.reviews-popup-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+}
+
+.reviews-popup-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #000;
+}
+
+.close-popup-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-popup-btn:hover {
+    color: #000;
+}
+
+.reviews-popup-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.no-reviews {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}
+
+/* Add review form in popup */
+.add-review-form {
+    width: 100%;        /* fill popup */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.rating-stars {
+    font-size: 24px;
+    color: #bbb;
+    cursor: pointer;
+    text-align: center;
+}
+
+.rating-stars .star {
+    margin: 0 2px;
+    transition: color 0.2s;
+}
+
+.rating-stars .star:hover {
+    color: #ffd700;
+}
+
+.rating-stars .star.active {
+    color: gold;
+}
+
+.review-input {
+    width: 100%;
+    min-height: 20vh;  /* flexible */
+    max-height: 40vh;   /* won't exceed popup */
+    padding: 10px;
+    resize: vertical;
+}
+
+
+.review-input:focus {
+    outline: none;
+    border: 2px solid #000;
+}
+
+.submit-btn {
+    background: black;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    align-self: center;
+    min-width: 120px;
+}
+
+.submit-btn:hover {
+    background: #333;
 }
