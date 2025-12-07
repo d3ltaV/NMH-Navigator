@@ -3,8 +3,8 @@ from flask_assets import Environment, Bundle
 import json
 from dotenv import load_dotenv
 import os
-from utils.workjobs import WORKJOBS  # format: dict of {location: -> [WorkJob objects]}
-from utils.classes import CLASSES  # format: list of [Class objects]
+# from utils.workjobs import WORKJOBS  # format: dict of {location: -> [WorkJob objects]}
+# from utils.classes import CLASSES  # format: list of [Class objects]
 
 BUILDINGS = ["Bolger", "Alumni Hall", "Schauffler Library", "Gym", "Gilder", "Various Locations", "RAC",
              "Health Center", "Communications Office", "Early Childhood Center", "Farm", "Service Learning",
@@ -110,4 +110,4 @@ def api_workjobs(location):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

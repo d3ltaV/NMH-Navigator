@@ -1,10 +1,75 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home - NMH Navigator{% endblock %}
 
 {% block body %}
-    <div class="home-container">
-        <h1>Welcome to NMH-Navigator</h1>
-        <p>Your guide to navigating the campus and finding workjobs.</p>
+<div class="home-page">
+    <div class="home-content-wrapper">
+        <div class="home-container">
+            <div class="home-logo">
+                <div class="logo-circle">
+                    <span class="logo-text">NMH</span>
+                </div>
+            </div>
+
+            <h1 class="home-title">Welcome to NMH Navigator</h1>
+
+            <p class="home-subtitle">
+                Your comprehensive guide to navigating campus life. Discover classes, explore workjobs, and find co-curricular opportunities all in one place.
+            </p>
+
+            <div class="home-nav-cards">
+                <a href="{{ url_for('class_view') }}" class="nav-card nav-card-classes">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Browse Classes</h3>
+                    <p>Explore academic courses</p>
+                </a>
+
+                <a href="{{ url_for('workjob_view') }}" class="nav-card nav-card-workjobs">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Find Workjobs</h3>
+                    <p>Discover campus positions</p>
+                </a>
+
+                <a href="{{ url_for('map') }}" class="nav-card nav-card-map">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Campus Map</h3>
+                    <p>Navigate the grounds</p>
+                </a>
+            </div>
+
+            <div class="home-features">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h4>Smart Search & Filters</h4>
+                    <p>Find what you need instantly</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Student Reviews</h4>
+                    <p>Read authentic feedback</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h4>Real-Time Updates</h4>
+                    <p>Stay current with changes</p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

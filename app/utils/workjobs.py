@@ -36,6 +36,7 @@ class WorkJob:
         csv_path = os.path.join(base_dir, "../data/classes.csv")
         csv_path = os.path.normpath(csv_path)
         table = pd.read_csv(csv_path)
+        print("COLUMNS:", table.columns.tolist())
         return table
 
     @classmethod

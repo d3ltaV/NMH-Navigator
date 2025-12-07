@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}NMH Navigator Classes{% endblock %}
+{% block title %}Classes - NMH Navigator{% endblock %}
 
 {% block body %}
 <div class="classes-page">
@@ -12,7 +12,12 @@
 
         <div class="controls-section">
             <div class="search-bar">
-                <input type="text" id="searchBox" placeholder="Search classes >
+                <input
+                    type="text"
+                    id="searchBox"
+                    placeholder="Search classes by name, BNC, semester, or room..."
+                    autocomplete="off"
+                >
             </div>
 
             <div class="filter-controls">
@@ -20,6 +25,7 @@
                     <label for="subjectFilter">Subject</label>
                     <select id="subjectFilter">
                         <option value="">All Subjects</option>
+                        <!-- Populated by JavaScript -->
                     </select>
                 </div>
 
