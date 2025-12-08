@@ -2,7 +2,7 @@
 
 **Project: NMH Navigator**
 
-**Sprint Goal:** Deliver an MVP that allows students to discover workjobs, classes, and co-curriculars in one place via a category or map setting. Functions include ratings/reviews, search/filter, interactive class map, and student feedback form.
+**Sprint Goal:** Deliver an MVP that allows students to discover workjobs, classes, and co-curriculars in one place via a category or map setting. Functions include ratings/reviews, search/filter, interactive class map, and a general resources page.
 
 ## Part 1 - Introduction
 
@@ -16,6 +16,7 @@ This system aims to provide users with access to:
 - View by map or view by category
 - Co-curricular and rating
 - PE and rating
+- General Resources Page to important NMH tools and platforms
 
 ### 1.2 Scope
 
@@ -41,6 +42,8 @@ This system aims to provide users with access to:
 
 **Nice-to-Have Features:**
 - Dining module with ratings
+- Coordination with the campus Wellington Dots data
+- General Resources page with links to existing NMH platforms
 - Moderation and community guidelines
 - Dashboard for managing content
 
@@ -62,14 +65,12 @@ This system aims to provide users with access to:
   - Students want an easy website to use and refer to information without having to do extensive research themselves.
 - **Secondary users: Advisors**
   - Advisors can use this website to help direct advisees to the right information and help them formulate their academic and extracurricular plans.
-- **Admin/Moderators: Students who are creating this project**
-  - Grace, Joelle, Lorcan, Angelina, Siddiqi, and Loli—part of the Sprint Planning Team—will be in charge of handling student input on the website to ensure all content published is appropriate.
 
 ### 2.2 General Constraints
 
 - User data (emails, passwords) must be stored securely
-- The system should comply with NMH data privacy expectations.
-- The website should function on modern browsers and standard devices used across NMH.
+- The system should comply with NMH data privacy expectations
+- The website should function on modern browsers and standard devices used across NMH
 
 ### 2.3 Assumptions and Dependencies
 
@@ -91,7 +92,7 @@ This system aims to provide users with access to:
 **User story 1:** As an NMH student, I want to easily access information about different locations on campus, including what classes and workjobs are offered there, so I can learn more about my academic and work opportunities.
 
 **Acceptance criteria:**
-- Beautiful map that shows dot for each location that has class/workjob
+- Beautiful map that shows dot for each location that has class/workjob/co-curricular options shown for that location
 - Clicking a dot opens a new panel
 - The map pans and zooms smoothly
 
@@ -102,7 +103,7 @@ This system aims to provide users with access to:
 **Acceptance criteria:**
 - Users can easily see feedback and ratings for each component
 - Logged-in users can easily give feedback for classes/food /workjob
-- Multiple methods of rating are supported, such as free response, 0–5 scale, and scatter plot.
+- Multiple methods of rating are supported, such as free response and the 0–5 scale.
 
 #### Feature 3: Workjob Catalog
 
@@ -118,7 +119,7 @@ This system aims to provide users with access to:
 **User story 4:** As an overstimulated student who struggles selecting the right classes, I want a class list with its credits associated (via department), difficulty, location, and ratings/reviews.
 
 **Acceptance criteria:**
-- Class list with department, level, prereqs, typical instructors (if NMH allows), and rating
+- Class list with department, level, prereqs, and rating
 - Filters: department, level, location
 
 #### Feature 5: Co-Curricular/PE/Sports Credit Module
@@ -173,6 +174,29 @@ This system aims to provide users with access to:
 - Categories for feedback (bug, suggestion, report)
 - Confirmation message after submission
 
+#### Feature 10: Dot Plot Rating System ("Wellington Dots")
+
+**User story 10:** As a student, I want to rate and view classes using a **dot-plot system** that reflects likeability (1 to 5) and challenge level (low, medium, high), so I can best choose classes that fit within my comfort level. 
+
+**Acceptance criteria:**
+- Dot plot shows a square grid in four sections with **Vertical Axis (Likeability, "Hate" to "Love")** and **Horizontal Axis (Challenge level ranging from "Challenged" to "Unchallenged")**
+- Integrate with existing Wellington Dot system, if possible
+- Each student generates a single dot positioned according to the selected values
+- Only logged-in users can submit a rating for the class
+- Integrates with Feature 2, but is only displayed when selected
+- Updates and new ratings are automatically added to the dot plot
+
+#### Feature 11: NMH Resources Page
+
+**User story 11:** As a student, I want a **Resources** page with hyperlinks to existing NMH tools and websites so I can access important information efficiently without having to search across multiple websites. 
+
+**Acceptance criteria:**
+- Page titled "NMH Resources" in the navigation menu
+- Includes links to important NMH platforms (NMH official website, NMH Hub—Dining Hall Menus, NMH Club Database, etc.) 
+- Each link contains a short description of what the platform/resource is used for
+- Page loads quickly
+
+
 ### 3.2 Functional Requirements
 
 1. **Authentication System:**
@@ -195,8 +219,13 @@ This system aims to provide users with access to:
    - Separate pages for Workjobs, Classes, Co-Curriculars
    - Search and filter functions per page
 
-6. **Feedback form system**
-   - Stores form submissions in the backend for review by the admin team
+6. **Class Review System**
+   - Logged-in users can easily submit their reviews to different classes, work jobs, and cocurricular opportunities. Some modules allow for a 1 to 5 experience rating. 
+   - Users can view reviews from other people
+
+6. **General Resources Page**
+   - Page includes hyperlinks to existing NMH tools and platforms that can be helpful (official website, club database, etc.)
+   - Searchable and accessible from the main menu 
 
 ### 3.3 Non-Functional Requirements
 
@@ -273,3 +302,4 @@ This system aims to provide users with access to:
 - Feedback on Usability
 - Security and Privacy
 - Performance
+

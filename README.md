@@ -52,6 +52,8 @@ The system:
 │   └── Class_Diagram.jpg    #Documents the attributes and methods for each class
 │   └── SRS.md               # Full SRS (Purpose, Scope, Constraints, Stories)
 │
+├── .env                     # Environment installations (not on Github)
+│
 ├── .gitignore                         # Git ignore rules
 │
 └── README.md                          # Documentation '''</pre>
@@ -108,5 +110,49 @@ The system:
 
 ## 5. How to Run the App
 
-### TBD once everything is finished
+Follow these steps to run **NMH Navigator** on your local machine.
 
+### 1. Clone the Repository
+```bash
+git clone git@github.com:d3ltaV/NMH-Navigator.git
+cd NMH-Navigator
+```
+
+### 2. Create & Activate a Virtual Environment
+```bash
+Mac / Linux:
+python3 -m venv venv
+source venv/bin/activate
+
+Windows (PowerShell):
+python -m venv venv
+venv\Scripts\activate
+```
+
+### 3. Install Required Packages
+```bash
+pip install -r requirements.txt
+```
+### 4. Add Your .env File
+In the root folder, create a .env file containing:
+```bash
+WORKJOB_URL=<workjob_data_source>
+CLASS_URL=<class_data_source>
+API=<google_maps_api_key>
+```
+For cases of security, each developer must create .env locally. Contact development team for more information. 
+
+### 5. Run the App
+```bash
+python app/main.py
+```
+Users should see something similar to:
+```bash
+* Running on http://127.0.0.1:5000/
+```
+Works in both port 5000 and others ports as well. 
+
+### 6. Open the App in Your Browser
+Visit:
+http://127.0.0.1:5000
+(Or adjust to specific port)
