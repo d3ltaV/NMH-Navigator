@@ -109,7 +109,7 @@ def api_search():
                 if query in searchable_text:
                     results.append(job_dict)
         return jsonify(results)
-
+#test
     elif searchType == 'classes':
         if not query:
             all_classes = []
