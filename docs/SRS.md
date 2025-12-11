@@ -11,34 +11,32 @@
 NMH Navigator is a web-based platform designed to help students efficiently navigate and explore available classes and community opportunities.
 
 This system aims to provide users with access to:
-- Workjob reviews and rating
-- Class reviews and ratings
-- View by map or view by category
-- Co-curricular and rating
-- PE and rating
-- General Resources Page to important NMH tools and platforms
+- **Interactive Campus Map** with pins for each location
+- **Workjob** catalog and ratings
+- **Class catalog**, filters, and ratings
+- **PE, Co-curricular, Sports*** page and rating
+- **General Resources Page** to important NMH tools and platforms
 
 ### 1.2 Scope
 
 **MVP Features:**
-- User authentication
+- User authentication:
   - Only NMH users are allowed to log in and post reviews/information
-  - All NMH users should be prompted to create/sign in with an account
+  - NMH users can log in via NMH email address
+- Toggle view for workjob, class, and PE/Co-Curriculars (each listed as an individual page)
 - Interactive map view:
   - Clickable locations, with each location opening a list of workjobs, classes, and PE/Co-Curriculars in that location.
-  - Clicking on a workjob, class, PE, or co-curricular activity brings the user to that activity's page.
 - Workjob catalog list view:
-  - Page with all workjobs listed and different sorting functions (blocks/hours, days, locations, etc.)
-- Workjob, Class, and PE/Co-Curricular page:
-  - Workjob description, advisor, sports available, location, "assigned/selected," and workjob reviews and ratings (catalog + student feedback)
-  - Class description, department, location, and ratings
-  - PE/Co-Curricular description, advisor, location, season offered, and ratings
-  - Option to return to home page, map, or list view
-- Toggle view for workjob, class, and PE/Co-Curriculars
+  - Each workjob's Title, Location, Supervisor, Supervisor Email/Contact Information, Available Spots, and Blocks are listed
+  - Search by title, location, supervisor, blocks, etc.
+  - NMH users can post and view reviews
+- PE/Co-Curricular/Sports Page:
+  - PE/Co-Curricular/Sports Category, Season, Prereqs, Location, Schedule, and Advisor are listed
+  - Search by name, location, category, season, location, advisor, etc.
+  - NMH users can post and view reviews
 - Class catalog list view:
-  - Class description
+  - Class name, BNC code (Department included), Semester, and Room (if available)
   - Reviews and rating (catalog + student feedback)
-- PE/Co-curriculars review and rating (catalog + student feedback)
 
 **Nice-to-Have Features:**
 - Dining module with ratings
