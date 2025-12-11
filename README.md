@@ -27,6 +27,11 @@ The system:
 <pre>'''NMH-Navigator/
 │
 ├── app/
+│   ├── database/                        
+│   │   ├── db.py/                       
+│   │   ├── review.py/                    
+│   │   ├── user.py/                       
+│   │   
 │   ├── static/                        # Front-end 
 │   │   ├── css/                       # Stylesheets
 │   │   ├── images/                    # Icons, map assets, UI images
@@ -93,7 +98,11 @@ The system:
 - Only accessible to NMH users
 - 0–5 rating scale and any string comments
 
-### Global Search/Filter/Sort
+### Resources Page
+- Information Sections: General NMH Information, NMH Academics, NMH Athletics, NMH Student Life
+- Links and directories to existing NMH resources and databases
+
+### Search/Filter/Sort for Each Page
 - Search across Workjobs, Classes, and PE/Co-Curriculars
 - Sort by name, rating, or availability
 - Can be viewed both via a toggle list and a map
@@ -136,9 +145,13 @@ pip install -r requirements.txt
 ### 4. Add Your .env File
 In the root folder, create a .env file containing:
 ```bash
+API=<google_maps_api_key>
 WORKJOB_URL=<workjob_data_source>
 CLASS_URL=<class_data_source>
-API=<google_maps_api_key>
+COCURRICULAR_URL=<cocurricular_data_source>
+GOOGLE_CLIENT_SECRET=<google_client_secret>
+GOOGLE_CLIENT_ID<google_client_id>
+CLIENT_ID=<contact developer>
 ```
 For cases of security, each developer must create .env locally. Contact development team for more information. 
 
