@@ -59,6 +59,7 @@ scss_all = Bundle(
     'scss/workjobs.scss',
     'scss/map.scss',
     'scss/cocurriculars.scss',
+    'scss/reference.scss',
     filters='libsass',
     output='css/compiled.css'
 )
@@ -88,6 +89,7 @@ def class_view():
 
 @app.route("/api/search")
 def api_search():
+    # query parameters
     query = request.args.get('q', '').lower().strip()
     searchType = request.args.get('s', '').lower().strip()
 
@@ -103,6 +105,7 @@ def api_search():
             for job in jobs:
                 job_dict = job.to_dict()
                 searchable_text = f"{job_dict.get('name', '')} {job_dict.get('location', '')} {job_dict.get('description', '')} {job_dict.get('supervisor', '')}".lower()
+
                 if query in searchable_text:
                     results.append(job_dict)
         return jsonify(results)
@@ -116,8 +119,10 @@ def api_search():
 
         results = []
         for c in CLASSES:
+            # for x in c: add this loop if classes become grouped like workjobs
             class_dict = c.to_dict()
             searchable_text = f"{class_dict.get('bnc', '')} {class_dict.get('name', '')} {class_dict.get('semester', '')} {class_dict.get('room', '')}".lower()
+
             if query in searchable_text:
                 results.append(class_dict)
         return jsonify(results)
@@ -257,6 +262,9 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
+@app.route("/resources")
+def resources():
+    return render_template("reference.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
