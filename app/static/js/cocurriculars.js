@@ -38,14 +38,13 @@ function displayCocurriculars(cocurriculars) {
         html += '<div class="cocurricular-info"><strong>Location:</strong> ' + (cocurricular.location || 'TBD') + '</div>';
         html += '<div class="cocurricular-info"><strong>Schedule:</strong> ' + (cocurricular.schedule || 'TBD') + '</div>';
         html += '<div class="cocurricular-info"><strong>Advisor:</strong> ' + (cocurricular.advisor || 'TBD') + '</div>';
+        const safeName = encodeURIComponent(cocurricular.name); 
 
         html += `
-            <div class="reviews-section">
-                <button class="view-reviews-btn" onclick="openReviewsPopup('${cocurricular.name}', ${i})">View Reviews</button>
-                <button class="toggle-review-btn" onclick="openAddReviewPopup('${cocurricular.name}', ${i})">Add Review</button>
-            </div>
-        `;
-
+        <div class="reviews-section">
+            <button class="view-reviews-btn" onclick="openReviewsPopup(decodeURIComponent('${safeName}'), ${i})">View Reviews</button>
+            <button class="toggle-review-btn" onclick="openAddReviewPopup(decodeURIComponent('${safeName}'), ${i})">Add Review</button>
+        </div>`;
         html += '</div>';
     }
     grid.innerHTML = html;

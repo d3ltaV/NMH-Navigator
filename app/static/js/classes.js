@@ -113,14 +113,12 @@ function displayClasses(classes) {
         if (c.room) {
             html += '<div class="class-info"><strong>Room:</strong> ' + c.room + '</div>';
         }
-        
+        const safeName = encodeURIComponent(c.name); 
         html += `
-            <div class="reviews-section">
-                <button class="view-reviews-btn" onclick="openReviewsPopup('${c.name}', ${i})">View Reviews</button>
-                <button class="toggle-review-btn" onclick="openAddReviewPopup('${c.name}', ${i})">Add Review</button>
-            </div>
-        `;
-
+        <div class="reviews-section">
+            <button class="view-reviews-btn" onclick="openReviewsPopup(decodeURIComponent('${safeName}'), ${i})">View Reviews</button>
+            <button class="toggle-review-btn" onclick="openAddReviewPopup(decodeURIComponent('${safeName}'), ${i})">Add Review</button>
+        </div>`;
         html += '</div>';
     }
 

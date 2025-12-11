@@ -52,13 +52,12 @@ function displayWorkjobs(workjobs) {
         if (job.notes) {
             html += '<div class="workjob-info"><strong>Note:</strong> ' + job.notes + '</div>';
         }
+        const safeName = encodeURIComponent(job.name); 
         html += `
-            <div class="reviews-section">
-                <button class="view-reviews-btn" onclick="openReviewsPopup('${job.name}', ${i})">View Reviews</button>
-                <button class="toggle-review-btn" onclick="openAddReviewPopup('${job.name}', ${i})">Add Review</button>
-            </div>
-        `;
-
+        <div class="reviews-section">
+            <button class="view-reviews-btn" onclick="openReviewsPopup(decodeURIComponent('${safeName}'), ${i})">View Reviews</button>
+            <button class="toggle-review-btn" onclick="openAddReviewPopup(decodeURIComponent('${safeName}'), ${i})">Add Review</button>
+        </div>`;
         html += '</div>';
     }
     grid.innerHTML = html;
