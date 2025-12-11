@@ -64,7 +64,6 @@ function filterBySubject(classes) {
 function sortClasses(classes) {
     const sorted = [...classes];
 
-
     switch(currentSort) {
         case 'name':
             sorted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
@@ -115,20 +114,17 @@ function displayClasses(classes) {
             html += '<div class="class-info"><strong>Room:</strong> ' + c.room + '</div>';
         }
         
-        html += `<div class="add-review">
-            <input type="number" placeholder="Rating (1-5 stars)" id="rating-${i}">
-            <textarea placeholder="Write your review..." id="review-${i}"></textarea>
-            <button onclick="submitReview('${c.name}', ${i})">Submit Review</button>
-         </div>
-         <div id="reviews-${i}" class="reviews-container"></div>`;
+        html += `
+            <div class="reviews-section">
+                <button class="view-reviews-btn" onclick="openReviewsPopup('${c.name}', ${i})">View Reviews</button>
+                <button class="toggle-review-btn" onclick="openAddReviewPopup('${c.name}', ${i})">Add Review</button>
+            </div>
+        `;
 
         html += '</div>';
     }
 
     grid.innerHTML = html;
-    for (let i = 0; i < classes.length; i++) {
-        loadReviews('classes', classes[i].name, `reviews-${i}`);
-    }
 }
 
 function updateResultsInfo(shown, total) {
@@ -160,34 +156,93 @@ function handleSort() {
     handleSearch();
 }
 
-function loadReviews(targetType, targetName, containerId) {
-    fetch(`/api/reviews/${targetType}/${encodeURIComponent(targetName)}`)
+function openReviewsPopup(targetName, index) {
+    fetch(`/api/reviews/classes/${encodeURIComponent(targetName)}`)
         .then(res => res.json())
         .then(reviews => {
-            const container = document.getElementById(containerId);
-            let html = '';
+            let html = '<div class="reviews-popup-overlay" onclick="closePopup(event)">';
+                html += '<div class="reviews-popup-content" onclick="event.stopPropagation()">';
+                    html += '<div class="reviews-popup-header">';
+                        html += `<h3>Reviews for ${targetName}</h3>`;
+                        html += '<button class="close-popup-btn" onclick="closePopup()">×</button>';
+                    html += '</div>';
+                    html += '<div class="reviews-popup-body">';
 
-            if (reviews.length === 0) {
-                html = '<div class="no-reviews">No reviews yet.</div>';
-            } else {
-                reviews.forEach(r => {
-                    html += `<div class="review-card">
-                                <div><strong>Rating:</strong> ${r.rating || 'N/A'}</div>
-                                <div>${r.review || ''}</div>
-                             </div>`;
-                });
-            }
-            container.innerHTML = html;
+                    if (reviews.length === 0) {
+                        html += '<div class="no-reviews">No reviews yet. Be the first to add one!</div>';
+                    } else {
+                        reviews.forEach(r => {
+                            const stars = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+                            html += `<div class="review-card">
+                                        <div class="starsowo"><strong>Rating:</strong> ${stars}</div>
+                                        <div>${r.review || ''}</div>
+                                    </div>`;
+                        });
+                    }
+
+                    html += '</div>';
+                html += '</div>';
+            html += '</div>';
+
+            document.body.insertAdjacentHTML('beforeend', html);
         });
 }
 
-function submitReview(targetName, index) {
-    const reviewText = document.getElementById(`review-${index}`).value;
-    const rating = document.getElementById(`rating-${index}`).value;
-    if (isNaN(rating) || rating < 1 || rating > 5) {
-        alert("Rating must be a number between 1 and 5.");
+function openAddReviewPopup(targetName, index) {
+    let html = '<div class="reviews-popup-overlay" onclick="closePopup(event)">';
+        html += '<div class="reviews-popup-content" onclick="event.stopPropagation()">';
+            html += '<div class="reviews-popup-header">';
+            html += `<h3>Add Review for ${targetName}</h3>`;
+                html += '<button class="close-popup-btn" onclick="closePopup()">×</button>';
+                html += '</div>';
+                html += '<div class="reviews-popup-body">';
+                
+                html += '<div class="add-review-form">';
+                html += '<div class="rating-stars" id="popup-rating-stars">';
+                for (let i = 1; i <= 5; i++) {
+                    html += `<span class="star" data-value="${i}">★</span>`;
+                }
+                html += '</div>';
+                    html += '<input type="hidden" id="popup-rating">';
+                    html += '<textarea class="review-input" id="popup-review" placeholder="Write your review (max 200 characters)..."></textarea>';
+                    html += `<button class="submit-btn" onclick="submitReviewFromPopup('${targetName}')">Submit Review</button>`;
+                html += '</div>';
+            html += '</div>';
+        html += '</div>';
+    html += '</div>';
+
+    document.body.insertAdjacentHTML('beforeend', html);
+
+    const stars = document.querySelectorAll('#popup-rating-stars .star');
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const value = Number(this.getAttribute('data-value'));
+            document.getElementById('popup-rating').value = value;
+            
+            stars.forEach(s => {
+                const v = Number(s.getAttribute('data-value'));
+                s.classList.toggle('active', v <= value);
+            });
+        });
+    });
+}
+
+function submitReviewFromPopup(targetName) {
+    const reviewText = document.getElementById('popup-review').value;
+    const rating = document.getElementById('popup-rating').value;
+
+    const MAX_LENGTH = 200;
+
+    if (reviewText.length > MAX_LENGTH) {
+        alert(`Review cannot exceed ${MAX_LENGTH} characters.`);
         return;
     }
+
+    if (!rating || isNaN(rating) || rating < 1 || rating > 5) {
+        alert("Please select a rating between 1 and 5 stars.");
+        return;
+    }
+
     fetch('/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -199,13 +254,20 @@ function submitReview(targetName, index) {
         })
     }).then(res => {
         if (res.ok) {
-            loadReviews('classes', targetName, `reviews-${index}`);
-            document.getElementById(`review-${index}`).value = '';
-            document.getElementById(`rating-${index}`).value = '';
+            closePopup();
         } else {
             alert("Failed to add review. You must log in as an NMH student to add a review.");
         }
     });
+}
+
+function closePopup(event) {
+    if (!event || event.target.classList.contains('reviews-popup-overlay')) {
+        const popup = document.querySelector('.reviews-popup-overlay');
+        if (popup) {
+            popup.remove();
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -119,3 +119,167 @@
         color: #666;
     }
 }
+
+/* Reviews section with buttons */
+.reviews-section {
+    margin-top: 15px;
+    border-top: 1px solid #ccc;
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.view-reviews-btn, .toggle-review-btn {
+    background: #cfcfcf;
+    border: none;
+    border-radius: 8px;
+    padding: 2vh 2vw;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.view-reviews-btn:hover, .toggle-review-btn:hover {
+    background: #e0e0e0;
+}
+
+.review-card {
+    margin-bottom: 1vh;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.review-card strong {
+    color: #000;
+}
+
+.starsowo {
+    font-size: 18px;
+    color: gold;
+    margin-bottom: 5px;
+}
+
+.reviews-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.reviews-popup-content {
+    max-height: 60vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+}
+
+.reviews-popup-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+}
+
+.reviews-popup-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #000;
+}
+
+.close-popup-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-popup-btn:hover {
+    color: #000;
+}
+
+.reviews-popup-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Add review form in popup */
+.add-review-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rating-stars {
+    font-size: 24px;
+    color: #bbb;
+    cursor: pointer;
+    text-align: center;
+}
+
+.rating-stars .star {
+    margin: 0 2px;
+    transition: color 0.2s;
+}
+
+.rating-stars .star:hover {
+    color: #ffd700;
+}
+
+.rating-stars .star.active {
+    color: gold;
+}
+
+.review-input {
+    width: 100%;
+    min-height: 20vh;
+    max-height: 40vh;
+    padding: 10px;
+    resize: vertical;
+}
+
+.review-input:focus {
+    outline: none;
+    border: 2px solid #000;
+}
+
+.submit-btn {
+    background: black;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    align-self: center;
+    min-width: 120px;
+}
+
+.submit-btn:hover {
+    background: #333;
+}
