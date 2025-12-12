@@ -39,9 +39,17 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
+assets = Environment(app)
+assets.url = app.static_url_path
+assets.directory = app.static_folder
+assets.debug = True
+assets.auto_build = True
+
+
+
 with app.app_context():
     pass
-    #init_db()
+    init_db()
 
 
 @login_manager.user_loader
@@ -60,6 +68,7 @@ scss_all = Bundle(
     'scss/map.scss',
     'scss/cocurriculars.scss',
     'scss/reference.scss',
+    'scss/login.scss',
     filters='libsass',
     output='css/compiled.css'
 )
@@ -72,6 +81,8 @@ def get_google_provider_cfg():
 
 @app.route('/')
 def home():
+    if not current_user.is_authenticated:
+        return redirect(url_for('loginPage'))
     return render_template("index.html")
 
 @app.route("/cocurriculars")
@@ -89,7 +100,6 @@ def class_view():
 
 @app.route("/api/search")
 def api_search():
-    # query parameters
     query = request.args.get('q', '').lower().strip()
     searchType = request.args.get('s', '').lower().strip()
 
@@ -105,7 +115,6 @@ def api_search():
             for job in jobs:
                 job_dict = job.to_dict()
                 searchable_text = f"{job_dict.get('name', '')} {job_dict.get('location', '')} {job_dict.get('description', '')} {job_dict.get('supervisor', '')}".lower()
-
                 if query in searchable_text:
                     results.append(job_dict)
         return jsonify(results)
@@ -119,10 +128,8 @@ def api_search():
 
         results = []
         for c in CLASSES:
-            # for x in c: add this loop if classes become grouped like workjobs
             class_dict = c.to_dict()
             searchable_text = f"{class_dict.get('bnc', '')} {class_dict.get('name', '')} {class_dict.get('semester', '')} {class_dict.get('room', '')}".lower()
-
             if query in searchable_text:
                 results.append(class_dict)
         return jsonify(results)
@@ -203,6 +210,12 @@ def addReview():
         rating=rating
     )
     return jsonify({"success": True}), 201
+
+@app.route("/loginpoop")
+def loginPage():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    return render_template("login.html")
 
 @app.route("/login")
 def login():
