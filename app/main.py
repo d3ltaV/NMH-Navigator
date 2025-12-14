@@ -33,7 +33,6 @@ GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configura
 
 app = Flask(__name__)
 
-
 app.secret_key = os.environ.get("CLIENT_ID", None)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -45,23 +44,8 @@ assets.directory = app.static_folder
 assets.debug = True
 assets.auto_build = True
 
-
-
-with app.app_context():
-    pass
-    init_db()
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
-
-
-assets = Environment(app)
-assets.url = app.static_url_path
-assets.directory = app.static_folder
-
 scss_all = Bundle(
+    'scss/index.scss',
     'scss/base.scss',
     'scss/classes.scss',
     'scss/workjobs.scss',
@@ -74,6 +58,13 @@ scss_all = Bundle(
 )
 assets.register('scss_all', scss_all)
 
+with app.app_context():
+    #pass
+    init_db()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
@@ -211,10 +202,8 @@ def addReview():
     )
     return jsonify({"success": True}), 201
 
-@app.route("/loginpoop")
+@app.route("/loginpage")
 def loginPage():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
     return render_template("login.html")
 
 @app.route("/login")

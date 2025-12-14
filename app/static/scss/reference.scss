@@ -1,3 +1,6 @@
+$navy: #003366;
+$maroon: #8B0000;
+
 .resources-container {
     margin: 0;
     padding: 0;
@@ -9,18 +12,16 @@
 }
 
 .resources-header {
-    background-color: #ededed;
+    background-color: #f4f4f4;
     padding: 3vh;
     margin: 5vh 8vw 2vh 8vw;
     text-align: center;
 
     h1 {
-        color: #000;
-        margin: 0;
-        font-weight: normal;
+        font-weight: 700;
+        color: $navy;
         font-size: 1.5rem;
-        font-family: Arial, sans-serif;
-        font-weight: normal;
+        margin: 0;
     }
 }
 
@@ -30,9 +31,9 @@
 
 .resources-section-title {
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 300;
-    color: #000;
+    color: #000000;
     margin: 7vh 0vh 0vh 0vh;
 }
 
@@ -55,18 +56,14 @@
 }
 
 .resource-title {
-    color: #0000ee;
+    color: $navy;
     font-size: 1.125rem;
     font-weight: bold;
     text-decoration: underline;
     margin: 0;
 
     &:hover {
-        color: #551a8b;
-    }
-
-    &:visited {
-        color: #551a8b;
+        color: $maroon;
     }
 }
 
@@ -75,10 +72,4 @@
     font-size: 0.875rem;
     line-height: 1.5;
     margin: 0;
-}
-
-.page-footer {
-    text-align: center;
-    color: #666;
-    font-size: 0.875rem;
 }
