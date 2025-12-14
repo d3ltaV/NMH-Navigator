@@ -15,14 +15,14 @@
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 50vw;
     margin: 0 auto;
 }
 
 .workjobs-header {
-    background-color: #f9f9f9;
+    background-color: #ededed;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: none;
     margin-bottom: 20px;
 
     h1 {
@@ -155,7 +155,7 @@
 }
 
 .view-reviews-btn, .toggle-review-btn {
-    background: #cfcfcf;
+    background: #e2e2e2;
     border: none;
     border-radius: 8px;
     padding: 2vh 2vw;
@@ -165,7 +165,7 @@
 }
 
 .view-reviews-btn:hover, .toggle-review-btn:hover {
-    background: #e0e0e0;
+    background: #c2c2c2;
 }
 
 .review-card {
