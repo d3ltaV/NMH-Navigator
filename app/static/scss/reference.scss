@@ -9,18 +9,31 @@
 }
 
 .resources-header {
-    background-color: #FAF9F6;
-    padding: 1.25rem;
-    border: 1px solid grey;
-    margin: 1.25rem;
+    background-color: #ededed;
+    padding: 3vh;
+    margin: 5vh 8vw 2vh 8vw;
     text-align: center;
 
     h1 {
         color: #000;
         margin: 0;
         font-weight: normal;
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+        font-family: Arial, sans-serif;
+        font-weight: normal;
     }
+}
+
+.resources-section {
+    margin: 2rem 0;
+}
+
+.resources-section-title {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #000;
+    margin: 7vh 0vh 0vh 0vh;
 }
 
 .resources-grid {
@@ -30,10 +43,6 @@
     padding: 1.25rem;
     max-width: 75rem;
     margin: 0 auto;
-
-    @media (max-width: 48rem) {
-        grid-template-columns: 1fr;
-    }
 }
 
 .resource-card {
@@ -70,7 +79,6 @@
 
 .page-footer {
     text-align: center;
-    padding: 1.25rem;
     color: #666;
     font-size: 0.875rem;
 }

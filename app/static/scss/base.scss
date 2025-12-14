@@ -6,9 +6,9 @@ body {
 .header {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    max-width: 100%;
     border-bottom: 1px solid black;
-    padding: 10px 20px;
+    padding: 2vh 1vw;
     background-color: white;
     position: relative;
     z-index: 100;
@@ -35,4 +35,16 @@ body {
             color: purple;
         }
     }
+}
+
+.login-section {
+    position: absolute;
+   .login-button {
+        padding: 1vh 2vw;
+        border-radius: 8px;
+        border: none;
+        background-color: #e2e2e2;
+   }
+   top: 2.5vh; 
+   right: 4vw;
 }

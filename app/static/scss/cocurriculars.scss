@@ -1,4 +1,4 @@
-.classes-container {
+.cocurriculars-container {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,7 +8,7 @@
     }
 }
 
-.classes-body {
+.cocurriculars-body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     padding: 20px;
@@ -19,7 +19,7 @@
     margin: 0 auto;
 }
 
-.classes-header {
+.cocurriculars-header {
     background-color: #ededed;
     padding: 20px;
     border: none;
@@ -68,7 +68,7 @@
     font-size: 14px;
 }
 
-.classes-grid {
+.cocurriculars-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
@@ -78,20 +78,30 @@
     }
 }
 
-.class-card {
+.cocurricular-card {
     background-color: #fff;
     padding: 15px;
     border: 1px solid #000;
 }
 
-.class-title {
+.cocurricular-title {
     color: #000;
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.class-info {
+.cocurricular-category {
+    color: #000;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 2px 6px;
+    background-color: #e0e0e0;
+    border: 1px solid #999;
+}
+
+.cocurricular-info {
     margin: 8px 0;
     color: #000;
     font-size: 14px;
