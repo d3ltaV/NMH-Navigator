@@ -11,34 +11,32 @@
 NMH Navigator is a web-based platform designed to help students efficiently navigate and explore available classes and community opportunities.
 
 This system aims to provide users with access to:
-- Workjob reviews and rating
-- Class reviews and ratings
-- View by map or view by category
-- Co-curricular and rating
-- PE and rating
-- General Resources Page to important NMH tools and platforms
+- **Interactive Campus Map** with pins for each location
+- **Workjob** catalog and ratings
+- **Class catalog**, filters, and ratings
+- **PE, Co-curricular, Sports*** page and rating
+- **General Resources Page** to important NMH tools and platforms
 
 ### 1.2 Scope
 
 **MVP Features:**
-- User authentication
+- User authentication:
   - Only NMH users are allowed to log in and post reviews/information
-  - All NMH users should be prompted to create/sign in with an account
+  - NMH users can log in via NMH email address
+- Toggle view for workjob, class, and PE/Co-Curriculars (each listed as an individual page)
 - Interactive map view:
   - Clickable locations, with each location opening a list of workjobs, classes, and PE/Co-Curriculars in that location.
-  - Clicking on a workjob, class, PE, or co-curricular activity brings the user to that activity's page.
 - Workjob catalog list view:
-  - Page with all workjobs listed and different sorting functions (blocks/hours, days, locations, etc.)
-- Workjob, Class, and PE/Co-Curricular page:
-  - Workjob description, advisor, sports available, location, "assigned/selected," and workjob reviews and ratings (catalog + student feedback)
-  - Class description, department, location, and ratings
-  - PE/Co-Curricular description, advisor, location, season offered, and ratings
-  - Option to return to home page, map, or list view
-- Toggle view for workjob, class, and PE/Co-Curriculars
+  - Each workjob's Title, Location, Supervisor, Supervisor Email/Contact Information, Available Spots, and Blocks are listed
+  - Search by title, location, supervisor, blocks, etc.
+  - NMH users can post and view reviews
+- PE/Co-Curricular/Sports Page:
+  - PE/Co-Curricular/Sports Category, Season, Prereqs, Location, Schedule, and Advisor are listed
+  - Search by name, location, category, season, location, advisor, etc.
+  - NMH users can post and view reviews
 - Class catalog list view:
-  - Class description
+  - Class name, BNC code (Department included), Semester, and Room (if available)
   - Reviews and rating (catalog + student feedback)
-- PE/Co-curriculars review and rating (catalog + student feedback)
 
 **Nice-to-Have Features:**
 - Dining module with ratings
@@ -68,7 +66,6 @@ This system aims to provide users with access to:
 
 ### 2.2 General Constraints
 
-- User data (emails, passwords) must be stored securely
 - The system should comply with NMH data privacy expectations
 - The website should function on modern browsers and standard devices used across NMH
 
@@ -102,7 +99,7 @@ This system aims to provide users with access to:
 
 **Acceptance criteria:**
 - Users can easily see feedback and ratings for each component
-- Logged-in users can easily give feedback for classes/food /workjob
+- Logged-in NMH users can easily give feedback for classes/food /workjob
 - Multiple methods of rating are supported, such as free response and the 0–5 scale.
 
 #### Feature 3: Workjob Catalog
@@ -110,36 +107,27 @@ This system aims to provide users with access to:
 **User story 3:** As an upper-class student who can pick their workjob, I want to see all the available options on campus so that I can find one that best suits my interests and schedule.
 
 **Acceptance criteria:**
-- Work job list with key fields: title, description, hours/terms, location, supervisors, contact, prereq/skills, ratings/reviews
+- Work job list with key fields: title, description, blocks, location, supervisors, contact, ratings/reviews
 - Workjob lists include all workjobs on campus
 - Hyperlinks to email contact information
+- Search by name, location, supervisor, or description
 
 #### Feature 4: Class Catalog
 
 **User story 4:** As an overstimulated student who struggles selecting the right classes, I want a class list with its credits associated (via department), difficulty, location, and ratings/reviews.
 
 **Acceptance criteria:**
-- Class list with department, level, prereqs, and rating
-- Filters: department, level, location
+- Class list with title, BNC code (department), Semester, and ratings
+- Filter by Subject, BNC Code, Semester, and Room
+- Search by class name, location, subject, etc.
 
 #### Feature 5: Co-Curricular/PE/Sports Credit Module
 
 **User story 5:** As a student with multiple areas of interest, I want to explore all the Co-Curricular, PE, and sports offerings NMH has so that I can best plan out my schedule.
 
 **Acceptance criteria:**
-- Co-Curricular list with name, category (arts, academics, sports, etc.), meeting times, available terms, advisor, and description
-- Students can both leave and view ratings/reviews about their experience
-- Filters: category, time (blocks offered)
-- Integration into the location map and toggle view
-
-#### Feature 6: Search, Filters, and Sorting
-
-**User story 6:** As a student, I want to filter what I am searching for so I can gain access to the information I want to see quickly.
-
-**Acceptance criteria:**
-- Global search across classes, workjobs, dining, and help
-- Sort by location, data type (class, workjob, PE, etc.)
-- Clear visual toggle to switch between list and map views
+- Co-Curricular list with name, category (arts, academics, sports, etc.), meeting times, available season/term, advisor, location, schedule, and description
+- Search by name, location, category, season, prerequisites...
 
 ### 3.2 Nice-to-Have User Stories
 
@@ -192,7 +180,7 @@ This system aims to provide users with access to:
 
 **Acceptance criteria:**
 - Page titled "NMH Resources" in the navigation menu
-- Includes links to important NMH platforms (NMH official website, NMH Hub—Dining Hall Menus, NMH Club Database, etc.) 
+- Includes links to important NMH platforms (NMH official website, NMH Hub—Dining Hall Menus, NMH Club Database, etc.) that are separated into categories
 - Each link contains a short description of what the platform/resource is used for
 - Page loads quickly
 
@@ -213,15 +201,11 @@ This system aims to provide users with access to:
 
 4. **Rating and Review System:**
    - Users can rate on a 0–5 scale NMH offerings (class, workjobs, etc) and leave comments
-   - Ratings are averaged and displayed visually
 
 5. **Catalog views**
-   - Separate pages for Workjobs, Classes, Co-Curriculars
+   - Separate pages for Workjobs, Classes, Co-Curriculars/Sports/PE
    - Search and filter functions per page
-
-6. **Class Review System**
-   - Logged-in users can easily submit their reviews to different classes, work jobs, and cocurricular opportunities. Some modules allow for a 1 to 5 experience rating. 
-   - Users can view reviews from other people
+   - Each page allows NMH users to post and view reviews
 
 6. **General Resources Page**
    - Page includes hyperlinks to existing NMH tools and platforms that can be helpful (official website, club database, etc.)
@@ -238,11 +222,10 @@ This system aims to provide users with access to:
    - Accessibility-friendly (contrast, alt text, keyboard navigation)
 
 3. **Security:**
-   - All user data is encrypted (SSL, hashed passwords)
-   - Review submissions sanitized to prevent XSS/SQL injection.
+   - Only NMH users can log in and post reviews
 
 4. **Scalability:**
-   - The system can handle at least 500 concurrent users.
+   - The system can handle concurrent users.
    - Easy to add future modules (Dining, Dorms, etc.)
 
 5. **Maintainability:**
@@ -278,8 +261,8 @@ This system aims to provide users with access to:
 
 ### 4.5 Technology Tools
 
-- Frontend: HTML, CSS, JS
-- Backend: Flask,
+- Frontend: HTML, SCSS, JS
+- Backend: Flask
 - Databases: CSV
 - Mapping: Maps JavaScript API
 - Version Control, Unity, and Communication: Git
