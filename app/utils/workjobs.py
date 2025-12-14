@@ -2,8 +2,7 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 
-
-class WorkJob:
+class WorkJobList:
 
     def __init__(self, name, location, supervisor, supervisor_email,
                  spots, blocks, selected_or_assigned, description, notes):
@@ -29,14 +28,12 @@ class WorkJob:
             "description": self.description,
             "notes": self.notes
         }
-
+    
     @classmethod
     def getTable(cls):
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(base_dir, "../data/classes.csv")
-        csv_path = os.path.normpath(csv_path)
-        table = pd.read_csv(csv_path)
-        print("COLUMNS:", table.columns.tolist())
+        load_dotenv()
+        docs = os.getenv('WORKJOB_URL')
+        table = pd.read_csv(docs)
         return table
 
     @classmethod
@@ -72,8 +69,8 @@ class WorkJob:
 
     @staticmethod
     def printWorkjobs():
-        wj = WorkJob.getWorkjobs()
-        workjobs = WorkJob.sortByLocation(wj)
+        wj = WorkJobList.getWorkjobs()
+        workjobs = WorkJobList.sortByLocation(wj)
         print("Workjobs by Location:")
         for location, jobs in workjobs.items():
             print(f"----------------{location}----------------")
@@ -81,5 +78,5 @@ class WorkJob:
                 print(job.to_dict())
 
 
-wj = WorkJob.getWorkjobs()
-WORKJOBS = WorkJob.sortByLocation(wj)
+wj = WorkJobList.getWorkjobs()
+WORKJOBS = WorkJobList.sortByLocation(wj)

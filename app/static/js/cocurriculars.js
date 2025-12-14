@@ -1,119 +1,45 @@
-let allClasses = [];
-let currentSort = 'name';
-let isDescending = false;
-let currentSubjectFilter = '';
+let allCocurriculars = [];
 
-function loadClasses() {
-    fetch('/api/search?s=classes')
+function loadCocurriculars() {
+    fetch('/api/search?s=cocurriculars')
         .then(response => response.json())
         .then(data => {
-            allClasses = data;
-            populateSubjectFilter();
-            sortAndDisplay();
-            updateResultsInfo(allClasses.length, allClasses.length);
+            allCocurriculars = data;
+            displayCocurriculars(allCocurriculars);
+            updateResultsInfo(allCocurriculars.length, allCocurriculars.length);
         });
 }
 
-function extractSubject(bnc) {
-    if (!bnc) return '';
-    const match = bnc.match(/^[A-Z_]+/);
-    return match ? match[0] : '';
-}
-
-function populateSubjectFilter() {
-    const subjects = new Set();
-    allClasses.forEach(c => {
-        const subject = extractSubject(c.bnc);
-        if (subject) {
-            subjects.add(subject);
-        }
-    });
-
-    const sortedSubjects = Array.from(subjects).sort();
-    const filterSelect = document.getElementById('subjectFilter');
-
-    sortedSubjects.forEach(subject => {
-        const option = document.createElement('option');
-        option.value = subject;
-        option.textContent = subject;
-        filterSelect.appendChild(option);
-    });
-}
-
-function searchClasses(query) {
-    fetch('/api/search?q=' + encodeURIComponent(query) + '&s=classes')
+function searchCocurriculars(query) {
+    fetch('/api/search?q=' + encodeURIComponent(query) + '&s=cocurriculars')
         .then(response => response.json())
         .then(results => {
-            const filtered = filterBySubject(results);
-            displayClasses(sortClasses(filtered));
-            updateResultsInfo(filtered.length, allClasses.length);
+            displayCocurriculars(results);
+            updateResultsInfo(results.length, allCocurriculars.length);
         });
 }
 
-function filterBySubject(classes) {
-    if (!currentSubjectFilter) {
-        return classes;
-    }
+function displayCocurriculars(cocurriculars) {
+    const grid = document.getElementById('cocurricularsGrid');
 
-    return classes.filter(c => {
-        const subject = extractSubject(c.bnc);
-        return subject === currentSubjectFilter;
-    });
-}
-
-function sortClasses(classes) {
-    const sorted = [...classes];
-
-    switch(currentSort) {
-        case 'name':
-            sorted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-            break;
-        case 'bnc':
-            sorted.sort((a, b) => (a.bnc || '').localeCompare(b.bnc || ''));
-            break;
-        case 'semester':
-            sorted.sort((a, b) => (a.semester || '').localeCompare(b.semester || ''));
-            break;
-        case 'room':
-            sorted.sort((a, b) => (a.room || '').localeCompare(b.room || ''));
-            break;
-    }
-
-    if (isDescending) {
-        sorted.reverse();
-    }
-
-    return sorted;
-}
-
-function sortAndDisplay() {
-    const filtered = filterBySubject(allClasses);
-    const sorted = sortClasses(filtered);
-    displayClasses(sorted);
-    updateResultsInfo(filtered.length, allClasses.length);
-}
-
-function displayClasses(classes) {
-    const grid = document.getElementById('classesGrid');
-
-    if (classes.length === 0) {
-        grid.innerHTML = '<div class="no-results"><h2>No classes found</h2><p>Try adjusting your search terms or filters</p></div>';
+    if (cocurriculars.length === 0) {
+        grid.innerHTML = '<div class="no-results"><h2>No cocurriculars found</h2><p>Try adjusting your search terms</p></div>';
         return;
     }
 
     let html = '';
-    for (let i = 0; i < classes.length; i++) {
-        const c = classes[i];
-        html += '<div class="class-card">';
-        html += '<div class="class-title">' + (c.name || 'Untitled Class') + '</div>';
-        html += '<div class="class-info"><strong>BNC:</strong> ' + (c.bnc || 'TBD') + '</div>';
-        if (c.semester) {
-            html += '<div class="class-info"><strong>Semester:</strong> ' + c.semester + '</div>';
-        }
-        if (c.room) {
-            html += '<div class="class-info"><strong>Room:</strong> ' + c.room + '</div>';
-        }
-        const safeName = encodeURIComponent(c.name); 
+    for (let i = 0; i < cocurriculars.length; i++) {
+        const cocurricular = cocurriculars[i];
+        html += '<div class="cocurricular-card">';
+        html += '<div class="cocurricular-title">' + (cocurricular.name || 'Untitled Position') + '</div>';
+        html += '<div class="cocurricular-info"><strong>Category:</strong> ' + (cocurricular.category || 'Category NA') + '</div>';
+        html += '<div class="cocurricular-info"><strong>Season:</strong> ' + (cocurricular.season || 'Season NA') + '</div>';
+        html += '<div class="cocurricular-info"><strong>Prerequisites:</strong> ' + (cocurricular.prerequisites || 'Prerequisites NA') + '</div>';
+        html += '<div class="cocurricular-info"><strong>Location:</strong> ' + (cocurricular.location || 'TBD') + '</div>';
+        html += '<div class="cocurricular-info"><strong>Schedule:</strong> ' + (cocurricular.schedule || 'TBD') + '</div>';
+        html += '<div class="cocurricular-info"><strong>Advisor:</strong> ' + (cocurricular.advisor || 'TBD') + '</div>';
+        const safeName = encodeURIComponent(cocurricular.name); 
+
         html += `
         <div class="reviews-section">
             <button class="view-reviews-btn" onclick="openReviewsPopup(decodeURIComponent('${safeName}'), ${i})">View Reviews</button>
@@ -121,41 +47,30 @@ function displayClasses(classes) {
         </div>`;
         html += '</div>';
     }
-
     grid.innerHTML = html;
 }
 
 function updateResultsInfo(shown, total) {
     const info = document.getElementById('resultsInfo');
     if (shown === total) {
-        info.textContent = 'Showing all classes!';
+        info.textContent = 'Showing all cocurriculars!';
     } else {
-        info.textContent = 'Showing ' + shown + ' of ' + total + ' class' + (total !== 1 ? 'es' : '');
+        info.textContent = 'Showing ' + shown + ' of ' + total + ' cocurricular' + (total !== 1 ? 's' : '');
     }
 }
 
 function handleSearch() {
     const query = document.getElementById('searchBox').value.trim();
     if (query) {
-        searchClasses(query);
+        searchCocurriculars(query);
     } else {
-        sortAndDisplay();
+        displayCocurriculars(allCocurriculars);
+        updateResultsInfo(allCocurriculars.length, allCocurriculars.length);
     }
 }
 
-function handleSubjectFilter() {
-    currentSubjectFilter = document.getElementById('subjectFilter').value;
-    handleSearch();
-}
-
-function handleSort() {
-    currentSort = document.getElementById('sortSelect').value;
-    isDescending = document.getElementById('descendingCheck').checked;
-    handleSearch();
-}
-
 function openReviewsPopup(targetName, index) {
-    fetch(`/api/reviews/classes/${encodeURIComponent(targetName)}`)
+    fetch(`/api/reviews/cocurriculars/${encodeURIComponent(targetName)}`)
         .then(res => res.json())
         .then(reviews => {
             let html = '<div class="reviews-popup-overlay" onclick="closePopup(event)">';
@@ -210,7 +125,8 @@ function openAddReviewPopup(targetName, index) {
     html += '</div>';
 
     document.body.insertAdjacentHTML('beforeend', html);
-
+    
+    // Add event listener for stars in popup
     const stars = document.querySelectorAll('#popup-rating-stars .star');
     stars.forEach(star => {
         star.addEventListener('click', function() {
@@ -245,7 +161,7 @@ function submitReviewFromPopup(targetName) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            target_type: 'classes',
+            target_type: 'cocurriculars',
             target_name: targetName,
             review: reviewText,
             rating: rating
@@ -270,8 +186,5 @@ function closePopup(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('searchBox').addEventListener('input', handleSearch);
-    document.getElementById('subjectFilter').addEventListener('change', handleSubjectFilter);
-    document.getElementById('sortSelect').addEventListener('change', handleSort);
-    document.getElementById('descendingCheck').addEventListener('change', handleSort);
-    loadClasses();
+    loadCocurriculars();
 });
