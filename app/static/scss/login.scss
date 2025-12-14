@@ -67,3 +67,12 @@ html, body {
     background:#08223c;
   }
 }
+
+.goback {
+  margin-top: 2vh;
+  color: $navy;
+
+  &:hover {
+    color: $maroon;
+  }
+}
