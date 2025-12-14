@@ -1,3 +1,6 @@
+$navy: #003366;
+$maroon: #8B0000;
+
 .cocurriculars-container {
     margin: 0;
     padding: 0;
@@ -9,7 +12,6 @@
 }
 
 .cocurriculars-body {
-    font-family: Arial, sans-serif;
     background-color: #ffffff;
     padding: 20px;
 }
@@ -24,25 +26,13 @@
     padding: 20px;
     border: none;
     margin-bottom: 20px;
+    font-weight: 700;
 
     h1 {
-        color: #000;
+        font-weight: 700;
+        color: $navy;
+        font-size: 1.5rem;
         margin: 0 0 20px 0;
-        font-weight: normal;
-    }
-}
-
-.nav-links {
-    margin-bottom: 20px;
-
-    a {
-        color: #0000ee;
-        text-decoration: underline;
-        margin-right: 20px;
-
-        &:hover {
-            color: #551a8b;
-        }
     }
 }
 
@@ -72,10 +62,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
-
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-    }
 }
 
 .cocurricular-card {
@@ -130,7 +116,6 @@
     }
 }
 
-/* Reviews section with buttons */
 .reviews-section {
     margin-top: 15px;
     border-top: 1px solid #ccc;
@@ -144,17 +129,18 @@
 }
 
 .view-reviews-btn, .toggle-review-btn {
-    background: #e2e2e2;
+    background: $navy;
     border: none;
     border-radius: 8px;
     padding: 2vh 2vw;
     font-size: 14px;
     cursor: pointer;
     text-align: center;
+    color: white;
 }
 
 .view-reviews-btn:hover, .toggle-review-btn:hover {
-    background: #c2c2c2;
+    background: $maroon;
 }
 
 .review-card {

@@ -1,6 +1,10 @@
+$navy: #003366;
+$maroon: #8B0000;
+
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Arial', sans-serif;
 }
 
 .header {
@@ -29,10 +33,10 @@ body {
 
     a {
         text-decoration: underline;
-        color: blue;
+        color: $navy;
 
         &:hover {
-            color: purple;
+            color: $maroon;
         }
     }
 }
@@ -43,8 +47,13 @@ body {
         padding: 1vh 2vw;
         border-radius: 8px;
         border: none;
-        background-color: #e2e2e2;
-   }
+        background-color: $navy;
+        color: white;
+        &:hover {
+            background-color: $maroon;
+        }
+   } 
+   
    top: 2.5vh; 
    right: 4vw;
 }

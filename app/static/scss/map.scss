@@ -1,5 +1,8 @@
+$navy: #003366;
+$maroon: #8B0000;
+
 gmp-map {
-    height: 80vh;
+    height: 85vh;
     width: 100vw;
 }
 
@@ -13,7 +16,6 @@ gmp-map {
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     max-width: 300px;
-    font-family: Arial, sans-serif;
     z-index: 1000;
 }
 
@@ -33,12 +35,11 @@ gmp-map {
 }
 
 .workjob-link {
-    color: #0066cc;
-    text-decoration: none;
+    color: $navy;
     cursor: pointer;
 
     &:hover {
-        text-decoration: underline;
+        color: $maroon;
     }
 }
 
