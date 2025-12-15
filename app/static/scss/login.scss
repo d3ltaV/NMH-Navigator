@@ -1,0 +1,78 @@
+$navy: #003366;
+$maroon: #8B0000;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.login_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login_card {
+  background: #f4f4f4;
+  width: 100%;
+  max-width: 50vw;
+  padding: 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_account {
+  color: $navy;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.login_note {
+  color: $maroon;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+
+.login_description {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 2vh;
+  color: #000000;
+}
+
+.login_button {
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  padding: 2vh 2vw;
+  background: $navy;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background:#08223c;
+  }
+}
+
+.goback {
+  margin-top: 2vh;
+  color: $navy;
+
+  &:hover {
+    color: $maroon;
+  }
+}

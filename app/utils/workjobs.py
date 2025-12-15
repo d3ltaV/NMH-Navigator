@@ -2,7 +2,7 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 
-class WorkJob:
+class WorkJobList:
 
     def __init__(self, name, location, supervisor, supervisor_email,
                  spots, blocks, selected_or_assigned, description, notes):
@@ -69,8 +69,8 @@ class WorkJob:
 
     @staticmethod
     def printWorkjobs():
-        wj = WorkJob.getWorkjobs()
-        workjobs = WorkJob.sortByLocation(wj)
+        wj = WorkJobList.getWorkjobs()
+        workjobs = WorkJobList.sortByLocation(wj)
         print("Workjobs by Location:")
         for location, jobs in workjobs.items():
             print(f"----------------{location}----------------")
@@ -78,5 +78,5 @@ class WorkJob:
                 print(job.to_dict())
 
 
-wj = WorkJob.getWorkjobs()
-WORKJOBS = WorkJob.sortByLocation(wj)
+wj = WorkJobList.getWorkjobs()
+WORKJOBS = WorkJobList.sortByLocation(wj)

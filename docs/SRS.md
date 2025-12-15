@@ -2,7 +2,7 @@
 
 **Project: NMH Navigator**
 
-**Sprint Goal:** Deliver an MVP that allows students to discover workjobs, classes, and co-curriculars in one place via a category or map setting. Functions include ratings/reviews, search/filter, interactive class map, and a general resources page.
+**Sprint Goal:** Deliver an MVP that allows students to discover workjobs, classes, and co-curriculars in one place via a category or map setting. Functions include ratings/reviews, search/filter, interactive map, and a general resources page.
 
 ## Part 1 - Introduction
 
@@ -21,19 +21,19 @@ This system aims to provide users with access to:
 
 **MVP Features:**
 - User authentication:
-  - Only NMH users are allowed to log in and post reviews/information
-  - NMH users can log in via NMH email address
-- Toggle view for workjob, class, and PE/Co-Curriculars (each listed as an individual page)
+  - Only logged-in users allowed to post reviews
+  - Users can log in via Google accounts
+- Catalog view for workjob, class, and PE/Co-Curriculars (each listed as an individual page)
 - Interactive map view:
-  - Clickable locations, with each location opening a list of workjobs, classes, and PE/Co-Curriculars in that location.
+  - Clickable locations, with each location opening a list of workjobs at that location.
 - Workjob catalog list view:
   - Each workjob's Title, Location, Supervisor, Supervisor Email/Contact Information, Available Spots, and Blocks are listed
   - Search by title, location, supervisor, blocks, etc.
-  - NMH users can post and view reviews
+  - Logged-in users can post reviews
 - PE/Co-Curricular/Sports Page:
-  - PE/Co-Curricular/Sports Category, Season, Prereqs, Location, Schedule, and Advisor are listed
+  - PE/Co-Curricular/Sports page with Category, Season, Prereqs, Location, Schedule, and Advisor are listed
   - Search by name, location, category, season, location, advisor, etc.
-  - NMH users can post and view reviews
+  - Logged-in users can post and view reviews
 - Class catalog list view:
   - Class name, BNC code (Department included), Semester, and Room (if available)
   - Reviews and rating (catalog + student feedback)
@@ -99,7 +99,7 @@ This system aims to provide users with access to:
 
 **Acceptance criteria:**
 - Users can easily see feedback and ratings for each component
-- Logged-in NMH users can easily give feedback for classes/food /workjob
+- Logged-in NMH users can easily give feedback for classes/food/workjob
 - Multiple methods of rating are supported, such as free response and the 0–5 scale.
 
 #### Feature 3: Workjob Catalog
@@ -200,7 +200,7 @@ This system aims to provide users with access to:
    - Integrates with listings (clicking a pin must load associated data)
 
 4. **Rating and Review System:**
-   - Users can rate on a 0–5 scale NMH offerings (class, workjobs, etc) and leave comments
+   - Users can rate on a 0–5 scale NMH offerings (class, workjobs, etc.) and leave comments
 
 5. **Catalog views**
    - Separate pages for Workjobs, Classes, Co-Curriculars/Sports/PE
