@@ -30,7 +30,6 @@ GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 
-
 app = Flask(__name__)
 
 app.secret_key = os.environ.get("CLIENT_ID", None)
@@ -38,33 +37,33 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
+with app.app_context():
+    pass
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 assets = Environment(app)
 assets.url = app.static_url_path
 assets.directory = app.static_folder
-assets.debug = True
-assets.auto_build = True
+
 
 scss_all = Bundle(
-    'scss/index.scss',
     'scss/base.scss',
+    'scss/index.scss',
     'scss/classes.scss',
     'scss/workjobs.scss',
     'scss/map.scss',
     'scss/cocurriculars.scss',
     'scss/reference.scss',
     'scss/login.scss',
+    'scss/styles.css',
     filters='libsass',
     output='css/compiled.css'
 )
 assets.register('scss_all', scss_all)
-
-with app.app_context():
-    #pass
-    init_db()
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
 
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
@@ -72,8 +71,6 @@ def get_google_provider_cfg():
 
 @app.route('/')
 def home():
-    if not current_user.is_authenticated:
-        return redirect(url_for('loginPage'))
     return render_template("index.html")
 
 @app.route("/cocurriculars")
@@ -84,10 +81,10 @@ def cocurricular_view():
 def workjob_view():
     return render_template("workjobs.html", buildings=BUILDINGS)
 
-
 @app.route("/classes")
 def class_view():
     return render_template("classes.html")
+
 
 @app.route("/api/search")
 def api_search():
@@ -106,6 +103,7 @@ def api_search():
             for job in jobs:
                 job_dict = job.to_dict()
                 searchable_text = f"{job_dict.get('name', '')} {job_dict.get('location', '')} {job_dict.get('description', '')} {job_dict.get('supervisor', '')}".lower()
+
                 if query in searchable_text:
                     results.append(job_dict)
         return jsonify(results)
@@ -121,20 +119,20 @@ def api_search():
         for c in CLASSES:
             class_dict = c.to_dict()
             searchable_text = f"{class_dict.get('bnc', '')} {class_dict.get('name', '')} {class_dict.get('semester', '')} {class_dict.get('room', '')}".lower()
+
             if query in searchable_text:
                 results.append(class_dict)
         return jsonify(results)
 
-    elif (searchType == 'cocurriculars'):
+    elif searchType == 'cocurriculars':
         if not query:
             all_co = []
             for co in COCURRICULARS:
                 all_co.append(co.to_dict())
-            return jsonify(all_co) # list of dictionary of all cocurriculars
+            return jsonify(all_co)
 
         results = []
         for co in COCURRICULARS:
-            # for x in co: add this loop if cocurriculars become grouped like workjobs
             co_dict = co.to_dict()
             searchable_text = f"{co_dict.get('name', '')} {co_dict.get('category', '')} {co_dict.get('season', '')} {co_dict.get('prerequisites', '')} {co_dict.get('location', '')} {co_dict.get('schedule', '')} {co_dict.get('advisor', '')}".lower()
 
@@ -145,11 +143,16 @@ def api_search():
         return jsonify({"error": "somethings broken"}), 400
 
 
+@app.route("/resources")
+def resources():
+    return render_template("reference.html")
+
 @app.route("/map")
 def map():
     load_dotenv()
     key = os.getenv('API')
     return render_template("map.html", api=key)
+
 
 
 @app.route("/api/workjobs/<location>")
@@ -202,9 +205,6 @@ def addReview():
     )
     return jsonify({"success": True}), 201
 
-@app.route("/loginpage")
-def loginPage():
-    return render_template("login.html")
 
 @app.route("/login")
 def login():
@@ -216,7 +216,6 @@ def login():
         scope=["openid", "email", "profile"],
     )
     return redirect(request_uri)
-
 
 @app.route("/login/callback")
 def callback():
@@ -257,16 +256,11 @@ def callback():
     print(f"name {user.name}, id {user.id}, email {user.email}")
     return redirect(url_for("home"))
 
-
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("home"))
-
-@app.route("/resources")
-def resources():
-    return render_template("reference.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

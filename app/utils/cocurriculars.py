@@ -28,9 +28,10 @@ class CocurricularList:
     @classmethod
     def getTable(cls):
         load_dotenv()
-        docs = os.getenv('COCURRICULAR_URL')
-        table = pd.read_csv(docs)
-        table.columns = table.columns.str.strip()
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(base_dir, "../data/credits.csv")
+        csv_path = os.path.normpath(csv_path)
+        table = pd.read_csv(csv_path)
         return table
 
     @classmethod

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}NMH Navigator{% endblock %}</title>
 
     {% assets "scss_all" %}
@@ -13,29 +14,34 @@
 
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     <nav class="navbar">
         <div class="navbar__container">
-            <a href="{{ url_for('home') }}" id="navbar__logo">NMH Navigator</a>
+            <a href="{{ url_for('home') }}" id="navbar__logo">NMH-Navigator</a>
+
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
+
             <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="{{ url_for('home') }}" class="navbar__links">Home</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="{{ url_for('class_view') }}" class="navbar__links">Classes</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="{{ url_for('workjob_view') }}" class="navbar__links">Workjobs</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="{{ url_for('map') }}" class="navbar__links">Campus Map</a>
-                </li>
-            </ul>
+            <li class="navbar__item">
+                <a href="{{ url_for('class_view') }}" class="navbar__links">Classes</a>
+            </li>
+            <li class="navbar__item">
+                <a href="{{ url_for('workjob_view') }}" class="navbar__links">Workjobs</a>
+            </li>
+            <li class="navbar__item">
+                <a href="{{ url_for('cocurricular_view') }}" class="navbar__links">Credits</a>
+            </li>
+            <li class="navbar__item">
+                <a href="{{ url_for('map') }}" class="navbar__links">Campus Map</a>
+            </li>
+            <li class="navbar__item">
+                <a href="{{ url_for('resources') }}" class="navbar__links">Resources</a>
+            </li>
+        </ul>
         </div>
     </nav>
 
@@ -44,48 +50,47 @@
     </main>
 
     <footer class="footer">
-        <div class="footer__container">
-            <div class="footer__content">
-                <div class="footer__brand">
-                    <h3>NMH Navigator</h3>
-                    <p>Your Campus Companion</p>
+    <div class="footer__container">
+        <div class="footer__content">
+            <div class="footer__brand">
+                <h3>NMH Navigator</h3>
+            </div>
+
+            <div class="footer__links">
+                <div class="footer__section">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('class_view') }}">Classes</a></li>
+                        <li><a href="{{ url_for('workjob_view') }}">Workjobs</a></li>
+                        <li><a href="{{ url_for('cocurricular_view') }}">Credits</a></li>
+                        <li><a href="{{ url_for('map') }}">Campus Map</a></li>
+                    </ul>
                 </div>
 
-                <div class="footer__links">
-                    <div class="footer__section">
-                        <h4>Navigate</h4>
-                        <ul>
-                            <li><a href="{{ url_for('home') }}">Home</a></li>
-                            <li><a href="{{ url_for('class_view') }}">Classes</a></li>
-                            <li><a href="{{ url_for('workjob_view') }}">Workjobs</a></li>
-                            <li><a href="{{ url_for('map') }}">Campus Map</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer__section">
-                        <h4>Resources</h4>
-                        <ul>
-                            <li><a href="#">About NMH</a></li>
-                            <li><a href="#">Academic Calendar</a></li>
-                            <li><a href="#">Student Handbook</a></li>
-                            <li><a href="#">Contact Support</a></li>
-                        </ul>
-                    </div>
+                <div class="footer__section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://www.nmhschool.org/" target="_blank">About NMH</a></li>
+                        <li><a href="https://www.nmhschool.org/family/school-calendar-2025-26" target="_blank">Academic Calendar</a></li>
+                        <li><a href="https://fliphtml5.com/apxze/euju/NMH_Student_Handbook_2023-24/" target="_blank">Student Handbook</a></li>
+                        <li><a href="{{ url_for('resources') }}">More Resources</a></li>
+                    </ul>
+                </div>
 
                     <div class="footer__section">
                         <h4>Connect</h4>
                         <div class="social-icons">
-                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/nmh_hoggernews/" target="_blank" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="footer__copyright">
-                <p>&copy; 2025 NMH Navigator. All rights reserved. | Designed for Northfield Mount Hermon</p>
+                <p>&copy; NMH Navigator</p>
             </div>
         </div>
     </footer>

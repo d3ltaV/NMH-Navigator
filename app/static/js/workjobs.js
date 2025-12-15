@@ -52,7 +52,7 @@ function displayWorkjobs(workjobs) {
         if (job.notes) {
             html += '<div class="workjob-info"><strong>Note:</strong> ' + job.notes + '</div>';
         }
-        const safeName = encodeURIComponent(job.name); 
+        const safeName = encodeURIComponent(job.name);
         html += `
         <div class="reviews-section">
             <button class="view-reviews-btn" onclick="openReviewsPopup(decodeURIComponent('${safeName}'), ${i})">View Reviews</button>
@@ -122,7 +122,7 @@ function openAddReviewPopup(targetName, index) {
                 html += '<button class="close-popup-btn" onclick="closePopup()">×</button>';
                 html += '</div>';
                 html += '<div class="reviews-popup-body">';
-                
+
                 html += '<div class="add-review-form">';
                 html += '<div class="rating-stars" id="popup-rating-stars">';
                 for (let i = 1; i <= 5; i++) {
@@ -138,14 +138,14 @@ function openAddReviewPopup(targetName, index) {
     html += '</div>';
 
     document.body.insertAdjacentHTML('beforeend', html);
-    
+
     // Add event listener for stars in popup
     const stars = document.querySelectorAll('#popup-rating-stars .star');
     stars.forEach(star => {
         star.addEventListener('click', function() {
             const value = Number(this.getAttribute('data-value'));
             document.getElementById('popup-rating').value = value;
-            
+
             stars.forEach(s => {
                 const v = Number(s.getAttribute('data-value'));
                 s.classList.toggle('active', v <= value);

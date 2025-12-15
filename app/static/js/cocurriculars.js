@@ -38,7 +38,7 @@ function displayCocurriculars(cocurriculars) {
         html += '<div class="cocurricular-info"><strong>Location:</strong> ' + (cocurricular.location || 'TBD') + '</div>';
         html += '<div class="cocurricular-info"><strong>Schedule:</strong> ' + (cocurricular.schedule || 'TBD') + '</div>';
         html += '<div class="cocurricular-info"><strong>Advisor:</strong> ' + (cocurricular.advisor || 'TBD') + '</div>';
-        const safeName = encodeURIComponent(cocurricular.name); 
+        const safeName = encodeURIComponent(cocurricular.name);
 
         html += `
         <div class="reviews-section">
@@ -109,7 +109,7 @@ function openAddReviewPopup(targetName, index) {
                 html += '<button class="close-popup-btn" onclick="closePopup()">×</button>';
                 html += '</div>';
                 html += '<div class="reviews-popup-body">';
-                
+
                 html += '<div class="add-review-form">';
                 html += '<div class="rating-stars" id="popup-rating-stars">';
                 for (let i = 1; i <= 5; i++) {
@@ -125,14 +125,14 @@ function openAddReviewPopup(targetName, index) {
     html += '</div>';
 
     document.body.insertAdjacentHTML('beforeend', html);
-    
+
     // Add event listener for stars in popup
     const stars = document.querySelectorAll('#popup-rating-stars .star');
     stars.forEach(star => {
         star.addEventListener('click', function() {
             const value = Number(this.getAttribute('data-value'));
             document.getElementById('popup-rating').value = value;
-            
+
             stars.forEach(s => {
                 const v = Number(s.getAttribute('data-value'));
                 s.classList.toggle('active', v <= value);

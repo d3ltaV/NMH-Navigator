@@ -1,7 +1,7 @@
 @import 'base';
 
 .map-page {
-  height: calc(100vh - 80px);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -12,6 +12,14 @@
   padding: $spacing-md $spacing-lg;
   text-align: center;
 
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: $shadow-md;
+
   h1 {
     color: $text-light;
     margin: 0;
@@ -19,17 +27,16 @@
   }
 }
 
-
 .map-container {
   flex: 1;
   position: relative;
+  margin-top: 60px;
 
   gmp-map {
     width: 100%;
     height: 100%;
   }
 }
-
 
 #popup {
   display: none;
@@ -97,7 +104,6 @@
     background-color: darken($error-color, 10%);
   }
 }
-
 
 #workjob-detail {
   display: none;
@@ -182,7 +188,6 @@
   }
 }
 
-
 .overlay-backdrop {
   display: none;
   position: fixed;
@@ -199,8 +204,6 @@
   display: block;
 }
 
-
-
 @keyframes popupFadeIn {
   from {
     opacity: 0;
@@ -212,11 +215,16 @@
   }
 }
 
-
 @media (max-width: 768px) {
   #popup, #workjob-detail {
     width: 95%;
     max-height: 85vh;
     padding: $spacing-lg;
+  }
+
+  .map-header {
+    h1 {
+      font-size: 1.5rem;
+    }
   }
 }

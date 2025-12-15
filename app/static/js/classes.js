@@ -113,7 +113,7 @@ function displayClasses(classes) {
         if (c.room) {
             html += '<div class="class-info"><strong>Room:</strong> ' + c.room + '</div>';
         }
-        const safeName = encodeURIComponent(c.name); 
+        const safeName = encodeURIComponent(c.name);
         html += `
         <div class="reviews-section">
             <button class="view-reviews-btn" onclick="openReviewsPopup(decodeURIComponent('${safeName}'), ${i})">View Reviews</button>
@@ -194,7 +194,7 @@ function openAddReviewPopup(targetName, index) {
                 html += '<button class="close-popup-btn" onclick="closePopup()">×</button>';
                 html += '</div>';
                 html += '<div class="reviews-popup-body">';
-                
+
                 html += '<div class="add-review-form">';
                 html += '<div class="rating-stars" id="popup-rating-stars">';
                 for (let i = 1; i <= 5; i++) {
@@ -216,7 +216,7 @@ function openAddReviewPopup(targetName, index) {
         star.addEventListener('click', function() {
             const value = Number(this.getAttribute('data-value'));
             document.getElementById('popup-rating').value = value;
-            
+
             stars.forEach(s => {
                 const v = Number(s.getAttribute('data-value'));
                 s.classList.toggle('active', v <= value);

@@ -1,10 +1,9 @@
 @import 'base';
 
-
 .workjobs-page {
   min-height: 100vh;
   padding: $spacing-xl 0;
-  background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920');
+  background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -17,7 +16,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.93);
+    background: rgba(255, 255, 255, 0.92);
     z-index: 0;
   }
 
@@ -47,7 +46,6 @@
     font-size: $font-size-large;
   }
 }
-
 
 .controls-section {
   background: rgba(255, 255, 255, 0.95);
@@ -142,10 +140,9 @@
   border-left: 4px solid $secondary-color;
 }
 
-
 #workjobsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: $spacing-lg;
 }
 
@@ -156,162 +153,123 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   padding: $spacing-xl;
   transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(151, 201, 71, 0.2);
+  border: 1px solid rgba(112, 174, 224, 0.2);
   border-left: 5px solid $secondary-color;
 
   &:hover {
-    border-left-color: $accent-color;
-    cursor: pointer;
+    border-left-color: $primary-color;
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
-  .workjob-header {
-    margin-bottom: $spacing-md;
-    padding-bottom: $spacing-md;
-    border-bottom: 2px solid lighten($border-color, 5%);
-
-    .workjob-title {
-      font-size: $font-size-large;
-      font-weight: 700;
-      color: $primary-color;
-      margin-bottom: $spacing-sm;
-      line-height: 1.4;
-    }
-
-    .workjob-location {
-      display: inline-block;
-      background: linear-gradient(
-        135deg,
-        lighten($secondary-color, 45%) 0%,
-        lighten($accent-color, 40%) 100%
-      );
-      color: darken($secondary-color, 20%);
-      padding: $spacing-xs $spacing-md;
-      border-radius: $border-radius-sm;
-      font-size: $font-size-small;
-      font-weight: 700;
-      border: 1px solid rgba(151, 201, 71, 0.3);
-    }
-  }
-
-  .workjob-body {
-    flex: 1;
-    margin-bottom: $spacing-md;
-
-    .workjob-info {
-      margin-bottom: $spacing-sm;
-      font-size: $font-size-base;
-      color: $text-dark;
-      line-height: 1.7;
-
-      strong {
-        color: $secondary-color;
-        font-weight: 700;
-        display: inline-block;
-        min-width: 110px;
-      }
-    }
-
-    .workjob-description {
-      color: lighten($text-dark, 10%);
-      font-size: $font-size-small;
-      line-height: 1.7;
-      margin-top: $spacing-md;
-      padding-top: $spacing-md;
-      border-top: 1px solid lighten($border-color, 5%);
-      font-style: italic;
-    }
-  }
-
-  .workjob-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: $spacing-md;
-    border-top: 2px solid lighten($border-color, 5%);
-
-    .workjob-spots {
-      display: flex;
-      align-items: center;
-      gap: $spacing-xs;
-      color: $secondary-color;
-      font-weight: 700;
-      font-size: $font-size-base;
-
-      &::before {
-        content: '👥';
-        font-size: 1.2rem;
-      }
-    }
-
-    .workjob-type {
-      display: inline-block;
-      padding: $spacing-xs $spacing-md;
-      border-radius: $border-radius-sm;
-      font-size: $font-size-small;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-
-      &.selected {
-        background: linear-gradient(
-          135deg,
-          lighten($success-color, 45%) 0%,
-          lighten($success-color, 40%) 100%
-        );
-        color: darken($success-color, 10%);
-        border: 1px solid rgba(56, 142, 60, 0.3);
-      }
-
-      &.assigned {
-        background: linear-gradient(
-          135deg,
-          lighten($accent-color, 35%) 0%,
-          lighten($accent-color, 30%) 100%
-        );
-        color: darken($accent-color, 35%);
-        border: 1px solid rgba(255, 215, 0, 0.4);
-      }
-    }
-  }
-
+  .workjob-header,
+  .workjob-body,
+  .workjob-footer,
   .workjob-contact {
+    margin-bottom: $spacing-md;
+  }
+
+  .workjob-title {
+    font-size: $font-size-large;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+    line-height: 1.4;
+  }
+
+  .workjob-location {
+    display: inline-block;
+    background: linear-gradient(
+      135deg,
+      lighten($secondary-color, 45%) 0%,
+      lighten($secondary-color, 40%) 100%
+    );
+    color: darken($secondary-color, 20%);
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-small;
+    font-weight: 700;
+    margin-bottom: $spacing-sm;
+  }
+
+  .workjob-info {
+    margin-bottom: $spacing-sm;
+    font-size: $font-size-base;
+    color: $text-dark;
+    line-height: 1.6;
+
+    strong {
+      color: $secondary-color;
+      font-weight: 600;
+      margin-right: $spacing-xs;
+      display: inline-block;
+      min-width: 100px;
+    }
+  }
+
+  .workjob-description {
+    color: lighten($text-dark, 10%);
+    font-size: $font-size-small;
+    line-height: 1.7;
     margin-top: $spacing-md;
+    padding-top: $spacing-md;
+    border-top: 1px solid lighten($border-color, 5%);
+    font-style: italic;
+  }
 
-    a {
-      display: block;
-      padding: $spacing-md;
-      background: linear-gradient(
-        135deg,
-        lighten($secondary-color, 48%) 0%,
-        lighten($secondary-color, 43%) 100%
-      );
-      color: darken($secondary-color, 15%);
-      text-align: center;
-      border-radius: $border-radius-md;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(151, 201, 71, 0.3);
-      text-decoration: none;
+  .workjob-spots {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    color: $secondary-color;
+    font-weight: 700;
 
-      &:hover {
-        background: linear-gradient(
-          135deg,
-          $secondary-color 0%,
-          darken($secondary-color, 5%) 100%
-        );
-        color: $text-light;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(151, 201, 71, 0.3);
-      }
+    &::before {
+      content: '👥';
+      font-size: 1.2rem;
+    }
+  }
+
+  .workjob-type {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-small;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &.selected {
+      background: lighten($success-color, 45%);
+      color: darken($success-color, 10%);
+    }
+
+    &.assigned {
+      background: lighten($primary-color, 60%);
+      color: darken($primary-color, 10%);
+    }
+  }
+
+  .workjob-contact a {
+    display: block;
+    padding: $spacing-md;
+    background: linear-gradient(
+      135deg,
+      lighten($secondary-color, 48%) 0%,
+      lighten($secondary-color, 43%) 100%
+    );
+    color: darken($secondary-color, 15%);
+    text-align: center;
+    border-radius: $border-radius-md;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $secondary-color;
+      color: $text-light;
     }
   }
 }
-
 
 .no-results {
   text-align: center;
@@ -333,7 +291,6 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .filter-controls {
     grid-template-columns: 1fr;
@@ -346,11 +303,4 @@
   .controls-section {
     padding: $spacing-lg;
   }
-
-  .workjob-footer {
-    flex-direction: column;
-    gap: $spacing-sm;
-    align-items: flex-start;
-  }
 }
-

@@ -1,6 +1,6 @@
-Name,Category,Season(s) Available,Prerequisites,Location,Schedule,Faculty Advisor
+Name,Category,Season,Prerequisites,Location,Schedule,Faculty Advisor
 "A Cappella Group
-(The Nellies)",Cocurricular,Year-Round,Open Audition,"Heffernon &
+The Nellies",Cocurricular,Year-Round,Open Audition,"Heffernon &
 Raymond Hall
 
 ","Tue: 10:10-
@@ -9,7 +9,7 @@ Sun: 2-4 PM
 ",Alexandra Ludwig
 "
 A Cappella Group
-(Mount Harmony)
+Mount Harmony
 
 ",Cocurricular,Year-Round,Open Audition,Heffernon & Raymond Hall,"Tue: 10:10-
 10:40 AM;
@@ -41,7 +41,7 @@ Jazz Ensemble,Cocurricular,Year-Round,None,"RAC310 Band
 Room","Mon: 6:30-8 PM
 Thurs: 6:30-8 PM",Ron Smith
 Lamplighter,Cocurricular,Year-Round,None,"Blake Publications
-Room (Blake Tower)",Tue: 6:30-8 PM,"Ben James;
+Room Blake Tower",Tue: 6:30-8 PM,"Ben James;
 Juliana Camacho"
 Mandala,Cocurricular,Year-Round,None,"RAC113
 Design/Computer
@@ -81,14 +81,14 @@ Precussion
 Ensemble",Cocurricular,Year-Round,None,Rowland Studio,"Tue: 8-8:45 AM
 Fri: 8-8:45 AM",Ron Smith
 "Health
-(9th Graders)",Cocurricular,Year-Round,"Required for
+9th Graders",Cocurricular,Year-Round,"Required for
 9th Grades","NMH Connect
 Schedule if Applicable","NMH Connect
 Schedule if Applicable","T.J. Farmer;
 Meg Hodgin;
 Kim Shearer"
 "DSJ
-(10th Graders)",Cocurricular,Year-Round,"Required for
+10th (Graders)",Cocurricular,Year-Round,"Required for
 10th Grades","NMH Connect
 Schedule if
 Applicable","NMH Connect
@@ -99,7 +99,7 @@ Tae Kim;
 James Greenwood
 "
 "College Couseling
-(11th Graders)",Cocurricular,Year-Round,"Required for
+11th Graders",Cocurricular,Year-Round,"Required for
 11th Grades","NMH Connect
 Schedule if
 Applicable","NMH Connect
@@ -134,7 +134,7 @@ Tennis PE,PE,Fall,None,Tennis Courts,"Mon: 4:05-5:05 PM;
 Thu: 4:05-5:05 PM",Bill Roberts
 Wrestling PE,PE,Fall,None,Multi-Sport Facility,"Mon: 4:05-5:05 PM;
 Thu: 4:05-5:05 PM",Zach Bates
-"Rec Skiing/
+"Rec Skiing
 Snowboarding PE
 ",PE,Winter,None,Berkshire East,"Wed: 1-6 PM;
 Sat: 9 AM-4 PM",Steve Allison
@@ -153,29 +153,29 @@ Dance Studio II
 
 ",Mon-Sat,Nicole Williams
 "Music Immersion
-(with PE)",Sports Credit,Year-Round,None,RAC202,Mon-Sat,Ron Smith
+with PE",Sports Credit,Year-Round,None,RAC202,Mon-Sat,Ron Smith
 "Theater Immersion
-(cast)",Sports Credit,Year-Round,Open Audition,"Audition Times
+cast",Sports Credit,Year-Round,Open Audition,"Audition Times
 Vary",Mon-Sat,Eddie Yankow
 "Theater Immersion
-(crew)",Sports Credit,Fall,None,"Audition Times
+crew",Sports Credit,Fall,None,"Audition Times
 Vary",Mon-Sat,Emily Salfity
 "Girls XC
-(all levels)",Sports Credit,Fall,None,Track Field,Mon-Sat,"Barry Auskern;
+all levels",Sports Credit,Fall,None,Track Field,Mon-Sat,"Barry Auskern;
 Meg Eisenhauer"
 "Boys XC
-(all levels)",Sports Credit,Fall,None,Track Field,Mon-Sat,"Grant Gonzalez;
+all levels",Sports Credit,Fall,None,Track Field,Mon-Sat,"Grant Gonzalez;
 Jed Dioguardi"
 "Girls Field Hockey
-(all levels)",Sports Credit,Fall,Tryouts,"McLamore
+all levels",Sports Credit,Fall,Tryouts,"McLamore
 Turf Field",Mon-Sat,Kelsey Roberts
 Mountain Biking,Sports Credit,Fall,Tryouts,Forslund Gym,Mon-Sat,Steve Allison
 Girls Rowing ,Sports Credit,"Fall, Spring",Tryouts,Boathouse,Everyday,Claire Knowlton
 Boys Rowing ,Sports Credit,"Fall, Spring",Tryouts,Boathouse,Everyday,Hadleigh Weber
 "Girls Soccer
-(all levels)",Sports Credit, Fall,Tryouts,Compton Fields,Mon-Sat,Amy Haefele
+all levels",Sports Credit, Fall,Tryouts,Compton Fields,Mon-Sat,Amy Haefele
 "Boys Soccer
-(all levels)",Sports Credit, Fall,Tryouts,Peller Field,Mon-Sat,"Charlie Malcom;
+all levels",Sports Credit, Fall,Tryouts,Peller Field,Mon-Sat,"Charlie Malcom;
 Jim Birstien"
 Girls Volleyball,Sports Credit, Fall,Tryouts,Forslund Gym,Mon-Sat,Danny Ward
 Robotics Team,Sports Credit,Winter,Tryouts,Gilder 106,Mon-Sat,Danny Ward

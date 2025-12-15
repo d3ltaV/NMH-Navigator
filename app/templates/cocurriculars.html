@@ -1,27 +1,71 @@
 {% extends "base.html" %}
 
+{% block title %}NMH-Navigator: Credits{% endblock %}
+
 {% block body %}
-<div class="cocurriculars-container cocurriculars-body">
+<div class="cocurriculars-page">
     <div class="container">
         <div class="cocurriculars-header">
-            <h1>Cocurriculars Directory</h1>
-            <div class="search-container">
-                <input 
-                    type="text" 
-                    id="searchBox" 
-                    class="search-box" 
-                    placeholder="Search by name, location, category, season, prerequisites..."
+            <h1>Credit Catalog</h1>
+            <p>From Cocurriculars, PE's and Sports Credits: Navigate Credit Requirements.</p>
+        </div>
+
+        <div class="controls-section">
+            <div class="search-bar">
+                <input
+                    type="text"
+                    id="searchBox"
+                    placeholder="Search by name, category, season, location, or advisor..."
                     autocomplete="off"
                 >
             </div>
-            <div class="results-info" id="resultsInfo">Loading cocurriculars...</div>
+
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="categoryFilter">Category</label>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="">Cocurriculars</option>
+                        <option value="">Sports Credits</option>
+                        <option value="">PE</option>
+
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="seasonFilter">Season</label>
+                    <select id="seasonFilter">
+                        <option value="">All Seasons</option>
+                        <option value="">Fall</option>
+                        <option value="">Winter</option>
+                        <option value="">Spring</option>
+
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortSelect">Sort By</label>
+                    <select id="sortSelect">
+                        <option value="name">Name</option>
+                        <option value="category">Category</option>
+                        <option value="season">Season</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="descendingCheck">
+                    <label for="descendingCheck">Descending</label>
+                </div>
+            </div>
+
+            <div id="resultsInfo" class="results-info">Loading credits...</div>
         </div>
 
-        <div class="cocurriculars-grid" id="cocurricularsGrid">
-            <div class="loading">Loading cocurriculars...</div>
-        </div>
+        <div id="cocurricularsGrid"></div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <script src="{{ url_for('static', filename='js/cocurriculars.js') }}"></script>
 {% endblock %}

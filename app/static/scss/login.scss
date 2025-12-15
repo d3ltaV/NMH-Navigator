@@ -1,28 +1,29 @@
 $navy: #003366;
 $maroon: #8B0000;
+$light_blue: #e6f0fa;
 
-html, body {
-  height: 100%;
+body {
   margin: 0;
   padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .login_page {
+  background-color: $light_blue;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  padding: 20px;
 }
 
 .login_card {
-  background: #f4f4f4;
+  background: white;
   width: 100%;
-  max-width: 50vw;
+  max-width: 420px;
   padding: 40px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .login_account {
@@ -31,6 +32,7 @@ html, body {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 10px;
+  line-height: 1.3;
 }
 
 .login_note {
@@ -44,15 +46,38 @@ html, body {
 .login_description {
   text-align: center;
   font-size: 0.95rem;
-  margin-bottom: 2vh;
-  color: #000000;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.login_label {
+  font-weight: 600;
+  color: $navy;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.login_input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $navy;
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+  }
 }
 
 .login_button {
-  display: inline-block;
+  display: block;
   width: 100%;
-  max-width: 400px;
-  padding: 2vh 2vw;
+  padding: 14px 20px;
   background: $navy;
   color: white;
   text-align: center;
@@ -60,19 +85,41 @@ html, body {
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
+  margin-top: 20px;
+  transition: background 0.2s ease;
   border: none;
   cursor: pointer;
 
   &:hover {
-    background:#08223c;
+    background: darken($navy, 8%);
   }
 }
 
-.goback {
-  margin-top: 2vh;
-  color: $navy;
+.login_footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.login_link {
+  color: $maroon;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
 
   &:hover {
-    color: $maroon;
+    text-decoration: underline;
+    color: darken($maroon, 10%);
+  }
+}
+
+@media (max-width: 480px) {
+  .login_card {
+    padding: 30px 20px;
+  }
+
+  .login_account {
+    font-size: 1.3rem;
   }
 }

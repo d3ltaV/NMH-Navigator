@@ -20,12 +20,13 @@ class ClassList:
             "bnc": self.bnc,
         }
 
-
     @classmethod
     def getTable(cls):
         base_dir = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(base_dir, "../data/workjobs.csv")
+        csv_path = os.path.join(base_dir, "../data/classes.csv")
         csv_path = os.path.normpath(csv_path)
+        table = pd.read_csv(csv_path)
+        print("COLUMNS:", table.columns.tolist())
         return table
 
     @classmethod
