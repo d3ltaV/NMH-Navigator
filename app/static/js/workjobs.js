@@ -42,7 +42,7 @@ function displayWorkjobs(workjobs) {
         html += '<div class="workjob-info"><strong>Available Spots:</strong> ' + (job.spots || 'N/A') + '</div>';
 
         if (job.blocks) {
-            html += '<div class="workjob-blocks">Blocks: ' + job.blocks + '</div>';
+            html += '<div class="workjob-blocks"><strong>Blocks</strong>: ' + job.blocks + '</div>';
         }
 
         if (job.description) {
