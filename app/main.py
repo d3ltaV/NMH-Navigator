@@ -72,8 +72,8 @@ def get_google_provider_cfg():
 
 @app.route('/')
 def home():
-    if not current_user.is_authenticated:
-        return redirect(url_for('loginPage'))
+    # if not current_user.is_authenticated:
+    #     return redirect(url_for('loginPage'))
     return render_template("index.html")
 
 @app.route("/cocurriculars")

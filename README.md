@@ -1,7 +1,7 @@
 
 # CMP521 NMH Navigator Capstone Project 
 
-**Sprint Duration:** November 10th until December 14th, 2025  
+**Sprint Duration:** November 10–15, 2025  
 **Team Members:** Grace Huang, Joelle Yang, Lorcan Purcell, Siddiqi Komou, Loli Koko, Angelina Marakaeva 
 
 **Project Owner:** Kevin Santos  
@@ -38,37 +38,37 @@ The system:
 │   │   │   ├── base.scss
 │   │   │   ├── classes.scss
 │   │   │   ├── index.scss
-│   │   │   ├── login.scss
 │   │   │   ├── map.scss
-│   │   │   ├── reference.scss
+│   │   │   ├── styles.scss
 │   │   │   └── workjobs.scss
 │   │   │
-│   │   ├── js/                           # Front-end scripts 
-│   │       ├── classes.js
-│   │       ├── cocurriculars.scss
-│   │       ├── map.js
-│   │       └── workjobs.js
-│   │   
+│   │   ├── js/                           # Front-end scripts
+│   │   │   ├── base.js                   # Global JS helpers
+│   │   │   ├── classes.js
+│   │   │   ├── map.js
+│   │   │   └── workjobs.js
+│   │   │
+│   │   └── images/                       # Icons, map assets, UI images
 │   │
 │   ├── templates/                       # HTML templates
-│   │   ├── base.html 
-│   │   ├── classes.html
-│   │   ├── index.html
-│   │   ├── cocurriculars.html
-│   │   ├── login.html                
-│   │   ├── map.html
-│   │   ├── reference.html 
+│   │   ├── base.html                    # Base layout template
+│   │   ├── index.html                   # Home page
+│   │   ├── classes.html                 # Classes page
+│   │   ├── map.html                     # Interactive map view
 │   │   └── workjobs.html                # Workjob page
 │   │
-│   ├── utils/                           # Utility files to work with csv data
-│   │   ├── classes.py 
-│   │   ├── cocurriculars.py
-│   │   ├── scraper.py                   # Selenium web scraper used to get class data          
-│   │   └── workjobs.py             
+│   ├── utils/                            # App-level backend utilities
+│   │   ├── workjob.py                   # Workjob data utilities
+│   │   └── workjob_class.py             # Shared class + workjob logic
 │   │
-│   ├── main.py
-│   └── schema.sql
+│   └── __init__.py                      # Flask app factory
 │
+├── utils/                               # Project-wide utilities
+│   ├── scraper.py                       # General data scraper/crawler
+│   ├── classes.py                       # Class data processing
+│   └── workjobs.py                      # Workjob data processing
+│
+├── main.py                              # Application entry 
 │
 ├── docs/                               # Project documentation
 │   ├── Use_Case_Diagram.jpg             # Use case diagram
@@ -76,19 +76,19 @@ The system:
 │   └── SRS.md                           # Software Requirements Specification Document
 │
 ├── .env                                 # Environment variables (not tracked)
-├── .gitignore  
-├── requirements.txt 
+├── .gitignore                           # Git ignore rules
 └── README.md                            # Project documentation & How to Run </pre>
 
 
 
 ---
 
-## 3. Feature Overview
+## 3. Feature Overview (more updated once whole file structure is finished)
 
 ### Authentication
-- Login through Google account with Google OAuth
-- Login required to submit and view reviews
+- Registers new users (email and password)
+- Validate login credentials and secure logout
+- Login required to submit and view reviews/feedback
 
 ### Interactive Map
 - Pins for campus locations with classes/workjobs
@@ -102,16 +102,17 @@ The system:
 ### Workjob Catalog
 - List all workjobs: title, description, hours/terms, location, supervisor/contact, prereqs/skills
 - Filters: hours/term, location, day
-- Emails for supervisor/contact
-- Ratings and reviews
+- Mailto links for supervisor/contact
+- Ratings & reviews panel
 
 ### Cocurricular/PE Catalog
-- List view: names, category, meeting times, terms, advisor
-- Logged-in users able to access ratings and reviews
+- List view: names, category, meeting times, terms, advisor, description
+- Filters: location, season offered, etc.
+- NMH users able to access ratings and reviews
 
 ### Rating & Review System
-- Only accessible to logged-in users
-- 0–5 star rating scale and any text comments
+- Only accessible to NMH users
+- 0–5 rating scale and any string comments
 
 ### Resources Page
 - Information Sections: General NMH Information, NMH Academics, NMH Athletics, NMH Student Life
@@ -119,13 +120,14 @@ The system:
 
 ### Search/Filter/Sort for Each Page
 - Search across Workjobs, Classes, and PE/Co-Curriculars
-- Sort classes by name, bnc code, subject, etc.
+- Sort by name, rating, or availability
+- Can be viewed both via a toggle list and a map
 ---
 
 ## 4. Diagrams and Documentation
 
 **docs/** includes:
-- **Use Case Diagram:** User actions 
+- **Use Case Diagram:** Player actions 
 - **Class Diagram:** Displays methods and attributes for the program’s classes
 - **SRS Document:** Outlines project scope, constraints, and user stories
 
